@@ -7,7 +7,7 @@ import { Home } from "./pages/Home";
 import { NewsDetailed } from "./pages/NewsDetailes";
 import { Result } from "./pages/Result";
 import { TeamAbout } from "./pages/TeamAbout";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./Components/generalComponents/Header";
 import Footer from "./Components/generalComponents/Footer";
 
@@ -121,16 +121,15 @@ function App() {
   return (
     <>
       {/* <TeamAbout />
-      <NewsDetailed />
-      <Result />
-      <Contact /> */}
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <NewsDetailed /> */}
+      {/* <Result /> */}
+      {/* <Contact /> */}
+
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <Footer />
 
       {/* {"admin dashboard profile login register about " } */}
     </>
