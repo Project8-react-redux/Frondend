@@ -118,10 +118,10 @@ function App() {
   return (
     <>
       <TeamAbout />
-      <Home />
-      <NewsDetailed />
-      <Result />
-      <Contact />
+      {/* <Home /> */}
+      {/* <NewsDetailed /> */}
+      {/* <Result />
+      <Contact /> */}
 
       {/* {"admin dashboard profile login register about " } */}
     </>
