@@ -1,6 +1,7 @@
 import React from "react";
 
-export const Contact = () => {
+
+export const ContactForm = () => {
   return (
     <>
       {/* Contact Section Begin */}
@@ -31,25 +32,22 @@ export const Contact = () => {
               <div className="contact-info">
                 <h2>Contact Info</h2>
                 <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                  The point of using Lorem Ipsum is that it has a distribution
-                  of letters.
+                We’re here to help and answer any question you might have.<br></br> We look forward to hearing from you.
                 </p>
                 <div className="ci-address">
-                  <h5>New York Office</h5>
+                  <h5>Amman </h5>
                   <ul>
-                    <li>T8/480 Collins St, Melbourne VIC 3000, New York</li>
-                    <li>1-234-567-89011</li>
-                    <li>info.colorlib@gmail.com </li>
+                    <li>Wasfi Altall St. Jordan Amman</li>
+                    <li>+962778084901</li>
+                    <li>info@gmail.com </li>
                   </ul>
                 </div>
                 <div className="ci-address">
-                  <h5>Australia Office</h5>
+                  <h5>Irbid</h5>
                   <ul>
-                    <li>Forrest Ray, 191-103 Integer Rd, Corona Australia</li>
-                    <li>1-234-567-89011</li>
-                    <li>info.colorlib@gmail.com </li>
+                    <li>Jordan Irbid</li>
+                    <li>+962778084596</li>
+                    <li>info2.@gmail.com </li>
                   </ul>
                 </div>
               </div>
