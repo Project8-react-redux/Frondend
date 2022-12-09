@@ -2,7 +2,7 @@
 import $ from "jquery";
 
 import { useEffect } from "react";
-import { Contact } from "./pages/Contact";
+import { Contact } from "./Components/Contact/Contact";
 import { Home } from "./pages/Home";
 import { NewsDetailed } from "./pages/NewsDetailes";
 import { Result } from "./pages/Result";
