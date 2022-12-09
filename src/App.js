@@ -11,7 +11,8 @@ import { TeamAbout } from "./pages/TeamAbout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Components/generalComponents/Header";
 import Footer from "./Components/generalComponents/Footer";
-
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   useEffect(() => {
@@ -130,8 +131,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
           <Route path="/Contact" element={<Contact />} />
           <Route path="/NewsDetailes" element={<NewsDetailes />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>
