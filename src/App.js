@@ -5,11 +5,12 @@ import { useEffect } from "react";
 import { Contact } from "./Components/Contact/Contact";
 import { Home } from "./pages/Home";
 import { NewsDetailed } from "./pages/NewsDetailes";
-import { Result } from "./pages/Result";
+import Result from "./pages/Result";
 import { TeamAbout } from "./pages/TeamAbout";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Components/generalComponents/Header";
 import Footer from "./Components/generalComponents/Footer";
+
 
 function App() {
   useEffect(() => {
