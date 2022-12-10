@@ -1,10 +1,11 @@
+
 import { useEffect, useState, React } from 'react';
 import NextMatches from './NextMatches';
 import RecentMatches from './RecentMatches';
 import { useSelector, useDispatch } from 'react-redux';
 import { Countries, DateAndLeague, previousMatches, saveChange } from '../../Reducers/MatchesReducer';
 import './matches.css';
-import Spinner from '../generalComponents/Spinner';
+import Spinner from '../generalComponents/spinner';
 import { Link } from 'react-router-dom';
 import { Leagues } from '../../Reducers/MatchesReducer';
 
@@ -142,33 +143,82 @@ const Matches = () => {
                     <div className="row mt-5">
                         <RecentMatches previouMatches={previouMatches} />
                         <NextMatches nextMatches={nextMatches} />
+
                     </div>
-                </div>
-            </section>
+                  );
+                })}
+              </div>
+            </div>
 
-        </>
-    )
+            <div className="col-md-4">
+              <select
+                className="col-md-8"
+                id="leagues"
+                name="leagueId"
+                onChange={handeLOnChange}
+              >
+                <option>--Select a league--</option>
+                {filterdLeagues.map((league) => {
+                  return (
+                    <option value={league.league_id}>
+                      {league.league_name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="col-md-4" id="date">
+              <form action="">
+                <label for="start">From:</label>
+                <input
+                  min={fromDate}
+                  name="from"
+                  value={dateAndLeague.from}
+                  onChange={handeLOnChange}
+                  type="date"
+                  id="start"
+                />
 
+                <label for="end">To:</label>
+                <input
+                  min={fromDate}
+                  max={toDate}
+                  value={dateAndLeague.To}
+                  onChange={handeLOnChange}
+                  type="date"
+                  name="To"
+                  id="end"
+                />
+              </form>
+            </div>
+          </div>
+          <div className="row">
+            <RecentMatches />
+            <NextMatches />
+          </div>
+        </div>
+      </section>
+    </>
+  );
 
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  function filterFunction() {
+    var input, filter, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    let div = document.getElementById("myDropdown");
+    a = div.querySelectorAll("div.search");
+    for (i = 0; i < a.length; i++) {
+      let txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
     }
-    function filterFunction() {
-        var input, filter, a, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        let div = document.getElementById("myDropdown");
-        a = div.querySelectorAll("div.search");
-        for (i = 0; i < a.length; i++) {
-            let txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
-
-            } else {
-                a[i].style.display = "none";
-            }
-        }
-    }
-}
+  }
+};
 
 export default Matches;

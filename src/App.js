@@ -1,11 +1,12 @@
 /* eslint-disable no-undef */
+
 import $ from "jquery";
 
 import { useEffect } from "react";
 import { Contact } from "./Components/Contact/Contact";
 import { NewsDetailes } from "./Components/NewsDetailes/NewsDetailes";
 import { Home } from "./pages/Home";
-import { NewsDetailed } from "./pages/NewsDetailes";
+// import { NewsDetailed } from "./pages/NewsDetailes";
 import Result from "./pages/Result";
 import { TeamAbout } from "./pages/TeamAbout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -131,12 +132,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
           <Route path="/Contact" element={<Contact />} />
           <Route path="/NewsDetailes" element={<NewsDetailes />} />
-
         </Routes>
         <Footer />
       </BrowserRouter>
