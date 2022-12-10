@@ -18,7 +18,6 @@ const Footer = () => {
                                     <Link to={''}>
                                         <img src="img/logo.png" alt="" />
                                     </Link>
-                                    /{"{"}" "{"}"}
                                 </div>
                                 <ul>
                                     <li>
