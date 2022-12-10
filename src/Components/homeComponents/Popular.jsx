@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getArticles } from "../../Reducers/ArticleReducer";
@@ -13,13 +14,16 @@ const Popular = () => {
   }, []);
   //   if (articles.Length === 0) return "loading...";
 
+
   return (
     <>
       {/* start popular section */}
       <section className="popular-section">
         <div className="container">
           <div className="row">
+
             <div className="col-lg-8">
+
               <div className="section-title">
                 <h3>
                   Popular <span>Post</span>
@@ -192,6 +196,7 @@ const Popular = () => {
                 </div>
               </div>
             </div>
+
             <div className="col-lg-4">
               {/*<div className="section-title">
                 <h3>
@@ -242,6 +247,7 @@ const Popular = () => {
                 </div>
  </div>*/}
             </div>
+
           </div>
         </div>
       </section>

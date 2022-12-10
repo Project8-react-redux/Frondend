@@ -1,34 +1,21 @@
 /* eslint-disable no-undef */
 
+import React from "react";
 
-import $ from "jquery";
-import { useEffect } from "react";
-import { Contact } from "./Components/Contact/Contact";
-import { NewsDetailes } from "./Components/NewsDetailes/NewsDetailes";
-import { Home } from "./pages/Home";
-// import { NewsDetailed } from "./pages/NewsDetailes";
-import Result from "./pages/Result";
-import { TeamAbout } from "./pages/TeamAbout";
-import { Route, Routes } from "react-router-dom";
-import Header from "./Components/generalComponents/Header";
-import Footer from "./Components/generalComponents/Footer";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-
-function App() {
-  useEffect(() => {
+export const useJquery = () => {
+  const reloadJquery = () => {
     (function ($) {
       /*------------------
-          Preloader
-      --------------------*/
+        Preloader
+    --------------------*/
       $(window).on("load", function () {
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
       });
 
       /*------------------
-          Background Set
-      --------------------*/
+        Background Set
+    --------------------*/
       $(".set-bg").each(function () {
         var bg = $(this).data("setbg");
         $(this).css("background-image", "url(" + bg + ")");
@@ -56,16 +43,16 @@ function App() {
       });
 
       /*------------------
-      Navigation
-    --------------------*/
+    Navigation
+  --------------------*/
       $(".mobile-menu").slicknav({
         prependTo: "#mobile-menu-wrap",
         allowParentLinks: true,
       });
 
       /*------------------
-          News Slider
-      --------------------*/
+        News Slider
+    --------------------*/
       $(".news-slider").owlCarousel({
         loop: true,
         nav: true,
@@ -84,8 +71,8 @@ function App() {
       });
 
       /*------------------------
-      Video Slider
-      ----------------------- */
+    Video Slider
+    ----------------------- */
       $(".video-slider").owlCarousel({
         items: 4,
         dots: false,
@@ -115,48 +102,12 @@ function App() {
       });
 
       /*------------------
-          Magnific Popup
-      --------------------*/
+        Magnific Popup
+    --------------------*/
       $(".video-popup").magnificPopup({
         type: "iframe",
       });
-      /*------------------
-          Route url
-      --------------------*/
-      // var routes = {
-      //   "/Contact": <Contact />,
-      // };
-
-      // var router = Router(routes);
-      // router.init();
     })(jQuery);
-  });
-  return (
-    <>
-      {/* <TeamAbout />
-      <NewsDetailed />
-      <Result />
-      <Contact /> */}
-
-
-
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/NewsDetailes" element={<NewsDetailes />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-
-
-      {/* {"admin dashboard profile login register about " } */}
-    </>
-  );
-}
-
-export default App;
+  };
+  return { reloadJquery };
+};

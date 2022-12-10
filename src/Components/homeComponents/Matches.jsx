@@ -1,4 +1,5 @@
 
+
 import { useEffect, useState, React } from 'react';
 import NextMatches from './NextMatches';
 import RecentMatches from './RecentMatches';
@@ -145,6 +146,7 @@ const Matches = () => {
                         <NextMatches nextMatches={nextMatches} />
 
                     </div>
+
                   );
                 })}
               </div>
@@ -169,6 +171,7 @@ const Matches = () => {
             </div>
             <div className="col-md-4" id="date">
               <form action="">
+
                 <label for="start">From:</label>
                 <input
                   min={fromDate}
