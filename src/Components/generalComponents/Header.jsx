@@ -31,7 +31,7 @@ const Header = () => {
                                 <Link to={'#'}>Sign in</Link>
                             </li>
                             <li>
-                                <Link to={'#'}>Contact</Link>
+                                <Link to={'/Contact'}>Contact</Link>
                             </li>
                         </ul>
                     </div>
@@ -87,7 +87,7 @@ const Header = () => {
                         </ul>
                     </li>
                     <li>
-                        <Link to={''}>Contact Us</Link>
+                        <Link to={'/Contact'}>Contact Us</Link>
                     </li>
                 </ul>
                 <div id="mobile-menu-wrap" />
@@ -103,9 +103,10 @@ const Header = () => {
                                         <li>20:00 - May 19, 2019</li>
                                         <li>
                                             <Link to={''}>Sign in</Link>
+                                            
                                         </li>
                                         <li>
-                                            <Link to={''}>Contact</Link>
+                                            <Link to={'/Contact'}>Contact</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -178,7 +179,7 @@ const Header = () => {
                                             </ul>
                                         </li>
                                         <li>
-                                            <Link to={''}>Contact Us</Link>
+                                            <Link to={'Contact'}>Contact Us</Link>
                                         </li>
                                     </ul>
                                     <div className="nm-right search-switch">
