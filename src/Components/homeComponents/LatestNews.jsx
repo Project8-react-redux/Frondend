@@ -1,9 +1,16 @@
-import { Link } from "react-router-dom"
-
-
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getArticles } from "../../Reducers/ArticleReducer";
 
 const LastesNews = () => {
-
+  const dispatch = useDispatch();
+  const articles = useSelector((state) => state.articles.articlesData);
+  console.log(articles);
+  useEffect(() => {
+    dispatch(getArticles());
+  }, []);
+  if (articles.Length === 0) return "loading...";
   return (
     <>
       {/* start Latest News */}
@@ -25,111 +32,53 @@ const LastesNews = () => {
               <div className="row">
                 <div className="col-md-6">
                   <div className="news-item left-news">
-                    <div
-                      className="ni-pic set-bg"
-                      data-setbg="img/news/latest-b.jpg"
-                    >
-                      <div className="ni-tag">Soccer</div>
+                    <div>
+                      <img src={articles[0]?.media} />
                     </div>
                     <div className="ni-text">
                       <h4>
-                        <Link to={''}>
-                          Once You Learn These Hard Truths About Life, You'll
-                          Become
-                        </Link>
+                        <Link to={""}>{articles[0]?.title}</Link>
                       </h4>
                       <ul>
                         <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
+                          <i className="fa fa-calendar" />{" "}
+                          {articles[0]?.published_date}
                         </li>
                         <li>
                           <i className="fa fa-edit" /> 3 Comment
                         </li>
                       </ul>
-                      <p>
-                        It’s that time again when people start thinking about
-                        their New Years Resolutions. Usually they involve,
-                        losing weight, quitting smoking, and joining a gym,
-                        just to mention a few.
-                      </p>
+                      <p>{articles[0]?.excerpt}</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-1.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={''}>How To Quit Smoking Using Zyban</Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-2.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={''}>Decorate For Less With Art Posters</Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-3.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={''}>Home Business Advertising Ideas</Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-4.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={''}>
-                          Lasik Doesn T Stop Your Eyes From Aging
-                        </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                  {articles.slice(1, 4)?.map((element) => {
+                    // console.log(element);
+                    return (
+                      <div className="news-item">
+                        <div className="ni-pic">
+                          <img src={element.media} />
+                        </div>
+                        <div className="ni-text">
+                          <h5>
+                            <Link to={`/NewsDetailes/${element.article_id}`}>
+                              {element.title}
+                            </Link>
+                          </h5>
+                          <ul>
+                            <li>
+                              <i className="fa fa-calendar" />
+                              {element.published_date}
+                            </li>
+                            <li>
+                              <i className="fa fa-edit" /> 3 Comment
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -242,7 +191,7 @@ const LastesNews = () => {
                     </tr>
                   </tbody>
                 </table>
-                <Link to={''} className="p-all">
+                <Link to={""} className="p-all">
                   View All
                 </Link>
               </div>
@@ -252,7 +201,67 @@ const LastesNews = () => {
       </section>
       {/* end latest news */}
     </>
-  )
-}
+  );
+};
 
 export default LastesNews;
+
+{
+  /*      <div className="news-item">
+                    <div className="ni-pic">
+                      <img src="img/news/ln-2.jpg" alt="" />
+                    </div>
+                    <div className="ni-text">
+                      <h5>
+                        <Link to={""}>Decorate For Less With Art Posters</Link>
+                      </h5>
+                      <ul>
+                        <li>
+                          <i className="fa fa-calendar" /> May 19, 2019
+                        </li>
+                        <li>
+                          <i className="fa fa-edit" /> 3 Comment
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="news-item">
+                    <div className="ni-pic">
+                      <img src="img/news/ln-3.jpg" alt="" />
+                    </div>
+                    <div className="ni-text">
+                      <h5>
+                        <Link to={""}>Home Business Advertising Ideas</Link>
+                      </h5>
+                      <ul>
+                        <li>
+                          <i className="fa fa-calendar" /> May 19, 2019
+                        </li>
+                        <li>
+                          <i className="fa fa-edit" /> 3 Comment
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="news-item">
+                    <div className="ni-pic">
+                      <img src="img/news/ln-4.jpg" alt="" />
+                    </div>
+                    <div className="ni-text">
+                      <h5>
+                        <Link to={""}>
+                          Lasik Doesn T Stop Your Eyes From Aging
+                        </Link>
+                      </h5>
+                      <ul>
+                        <li>
+                          <i className="fa fa-calendar" /> May 19, 2019
+                        </li>
+                        <li>
+                          <i className="fa fa-edit" /> 3 Comment
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+ */
+}

@@ -1,17 +1,25 @@
-import React from 'react';
+import React from "react";
 
-function HeroDetailes(props) {
-    return (
-        <div>
-            <>
-            <section
-          className="blog-hero-section set-bg"
-          data-setbg="img/blog/details/details-hero.jpg"
+function HeroDetailes({ articleDetail }) {
+  return (
+    <div>
+      <>
+        <section
+          className="blog-hero-section "
+          style={{
+            backgroundImage: `url(${articleDetail.media})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+          data-setbg="img/blog/details/details-1.jpg"
         >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
-                <div className="bh-text">
+                <div
+                  className="bh-text"
+                  style={{ backgroundColor: `#0000009c` }}
+                >
                   <h2>
                     England Women 1-0 Argentina Women: Jodie Taylor guarantees
                     Lionesses
@@ -29,9 +37,9 @@ function HeroDetailes(props) {
             </div>
           </div>
         </section>
-            </>
-        </div>
-    );
+      </>
+    </div>
+  );
 }
 
 export default HeroDetailes;
