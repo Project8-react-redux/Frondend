@@ -15,7 +15,7 @@ export const Home = () => {
       <TrendingNews />
       <Matches />
       <LatestNews />
-      <SoccerFeed />
+      {/* <SoccerFeed /> */}
       <Videos />
       <Popular />
       <SearchModal />
