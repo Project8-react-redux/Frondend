@@ -3,6 +3,7 @@ import $ from "jquery";
 
 import { useEffect } from "react";
 import { Contact } from "./Components/Contact/Contact";
+import { NewsDetailes } from "./Components/NewsDetailes/NewsDetailes";
 import { Home } from "./pages/Home";
 import { NewsDetailed } from "./pages/NewsDetailes";
 import { Result } from "./pages/Result";
@@ -128,6 +129,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/NewsDetailes" element={<NewsDetailes />} />
         </Routes>
         <Footer />
       </BrowserRouter>

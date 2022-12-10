@@ -1,7 +1,7 @@
 import React from "react";
-import { ClubContent } from "../components/teamAboutComponents/ClubContent";
-import { Hero } from "../components/teamAboutComponents/Hero";
-import { Players } from "../components/teamAboutComponents/Players";
+import { ClubContent } from "../Components/teamAboutComponents/ClubContent";
+import { Hero } from "../Components/teamAboutComponents/Hero";
+import { Players } from "../Components/teamAboutComponents/Players";
 
 export const TeamAbout = () => {
   return (
