@@ -127,18 +127,17 @@ function App() {
       <NewsDetailed />
       <Result />
       <Contact /> */}
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
 
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/NewsDetailes" element={<NewsDetailes />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/NewsDetailes" element={<NewsDetailes />} />
+      </Routes>
+      <Footer />
 
       {/* {"admin dashboard profile login register about " } */}
     </>
