@@ -15,6 +15,7 @@ root.render(
     <Provider store={store}>
       <App />
     </Provider>
+    >>>>>>>>> Temporary merge branch 2
   </React.StrictMode>
 );
 
