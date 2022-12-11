@@ -36,7 +36,7 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/NewsDetailes/:id" element={<NewsDetailes />} />
+          <Route path="/NewsDetailes" element={<NewsDetailes />} />
         </Routes>
         <Footer />
       </BrowserRouter>
