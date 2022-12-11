@@ -14,6 +14,7 @@ import Header from "./Components/generalComponents/Header";
 import Footer from "./Components/generalComponents/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Post from "./Components/NewsDetailes/Post";
 
 function App() {
   useEffect(() => {
@@ -129,16 +130,16 @@ function App() {
       <Result />
       <Contact /> */}
       <BrowserRouter>
-        <Header />
+        {/*     <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
           <Route path="/Contact" element={<Contact />} />
           <Route path="/NewsDetailes" element={<NewsDetailes />} />
         </Routes>
-        <Footer />
+    <Footer />*/}
+        <Post />
       </BrowserRouter>
 
       {/* {"admin dashboard profile login register about " } */}
