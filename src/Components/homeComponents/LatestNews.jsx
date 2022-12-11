@@ -1,9 +1,6 @@
-import { Link } from "react-router-dom"
-
-
+import { Link } from "react-router-dom";
 
 const LastesNews = () => {
-
   return (
     <>
       {/* start Latest News */}
@@ -33,7 +30,7 @@ const LastesNews = () => {
                     </div>
                     <div className="ni-text">
                       <h4>
-                        <Link to={''}>
+                        <Link to={""}>
                           Once You Learn These Hard Truths About Life, You'll
                           Become
                         </Link>
@@ -49,8 +46,8 @@ const LastesNews = () => {
                       <p>
                         It’s that time again when people start thinking about
                         their New Years Resolutions. Usually they involve,
-                        losing weight, quitting smoking, and joining a gym,
-                        just to mention a few.
+                        losing weight, quitting smoking, and joining a gym, just
+                        to mention a few.
                       </p>
                     </div>
                   </div>
@@ -62,7 +59,7 @@ const LastesNews = () => {
                     </div>
                     <div className="ni-text">
                       <h5>
-                        <Link to={''}>How To Quit Smoking Using Zyban</Link>
+                        <Link to={""}>How To Quit Smoking Using Zyban</Link>
                       </h5>
                       <ul>
                         <li>
@@ -80,7 +77,7 @@ const LastesNews = () => {
                     </div>
                     <div className="ni-text">
                       <h5>
-                        <Link to={''}>Decorate For Less With Art Posters</Link>
+                        <Link to={""}>Decorate For Less With Art Posters</Link>
                       </h5>
                       <ul>
                         <li>
@@ -98,7 +95,7 @@ const LastesNews = () => {
                     </div>
                     <div className="ni-text">
                       <h5>
-                        <Link to={''}>Home Business Advertising Ideas</Link>
+                        <Link to={""}>Home Business Advertising Ideas</Link>
                       </h5>
                       <ul>
                         <li>
@@ -116,7 +113,7 @@ const LastesNews = () => {
                     </div>
                     <div className="ni-text">
                       <h5>
-                        <Link to={''}>
+                        <Link to={""}>
                           Lasik Doesn T Stop Your Eyes From Aging
                         </Link>
                       </h5>
@@ -242,7 +239,7 @@ const LastesNews = () => {
                     </tr>
                   </tbody>
                 </table>
-                <Link to={''} className="p-all">
+                <Link to={""} className="p-all">
                   View All
                 </Link>
               </div>
@@ -252,7 +249,7 @@ const LastesNews = () => {
       </section>
       {/* end latest news */}
     </>
-  )
-}
+  );
+};
 
 export default LastesNews;
