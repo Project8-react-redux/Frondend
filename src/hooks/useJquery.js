@@ -1,7 +1,5 @@
 /* eslint-disable no-undef */
 
-import React from "react";
-
 export const useJquery = () => {
   const reloadJquery = () => {
     (function ($) {
