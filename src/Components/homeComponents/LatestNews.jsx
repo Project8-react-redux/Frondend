@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getArticles } from "../../Reducers/ArticleReducer";
@@ -11,6 +12,7 @@ const LastesNews = () => {
     dispatch(getArticles());
   }, []);
   if (articles.Length === 0) return "loading...";
+
   return (
     <>
       {/* start Latest News */}
@@ -37,7 +39,9 @@ const LastesNews = () => {
                     </div>
                     <div className="ni-text">
                       <h4>
+
                         <Link to={""}>{articles[0]?.title}</Link>
+
                       </h4>
                       <ul>
                         <li>
@@ -48,11 +52,14 @@ const LastesNews = () => {
                           <i className="fa fa-edit" /> 3 Comment
                         </li>
                       </ul>
+
                       <p>{articles[0]?.excerpt}</p>
+
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6">
+
                   {articles.slice(1, 4)?.map((element) => {
                     // console.log(element);
                     return (
@@ -79,6 +86,7 @@ const LastesNews = () => {
                       </div>
                     );
                   })}
+
                 </div>
               </div>
             </div>
@@ -206,62 +214,3 @@ const LastesNews = () => {
 
 export default LastesNews;
 
-{
-  /*      <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-2.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>Decorate For Less With Art Posters</Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-3.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>Home Business Advertising Ideas</Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-4.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>
-                          Lasik Doesn T Stop Your Eyes From Aging
-                        </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
- */
-}

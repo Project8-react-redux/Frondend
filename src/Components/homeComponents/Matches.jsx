@@ -2,28 +2,34 @@ import { useEffect, useState, React } from "react";
 import NextMatches from "./NextMatches";
 import RecentMatches from "./RecentMatches";
 import { useSelector, useDispatch } from "react-redux";
-import { Countries, saveChange } from "../../Reducers/MatchesReducer";
+import {
+  Countries,
+  DateAndLeague,
+  previousMatches,
+  saveChange,
+} from "../../Reducers/MatchesReducer";
 import "./matches.css";
 import Spinner from "../generalComponents/spinner";
 import { Link } from "react-router-dom";
 import { Leagues } from "../../Reducers/MatchesReducer";
 
 const Matches = () => {
-  //dipatch all countries || read all countries
+  //dipatch all countries || read all countries===========================================================
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.matches.filterData);
 
   useEffect(() => {
     dispatch(Countries());
   }, []);
-  //=====================
+  //=====================================================================================================
 
-  //set state to store the current country id and to dispatch the leagues depend on it .
+  //set state to store the current country id and to dispatch the leagues depend on it=========================================
   const [currentCountryId, setCurrentCountryId] = useState("");
   function changeIdState(id) {
     setCurrentCountryId(id);
     document.getElementById("leagues").style.display = "inline";
     document.getElementById("date").style.display = "inline";
+    document.getElementById("submit-btn").style.display = "inline";
   }
   useEffect(() => {
     dispatch(Leagues());
@@ -32,23 +38,42 @@ const Matches = () => {
   const filterdLeagues = allLeagues.filter(
     (e) => e.country_id == currentCountryId
   );
-  //=====================
+  //=============================================================================================================================
 
-  // matches details ===============
+  // matches details ==========================================================================================
 
   // get today's date to set it as the default value of the from input
+  let fromDate = new Date().toJSON().slice(0, 10);
+  let getDate = new Date();
+  let day = getDate.getDate() + 1;
+  let month = getDate.getMonth() - 10;
+  let year = getDate.getFullYear() + 1;
+
+  let toDate = `${year}-${month}-${day}`;
+
+  //this state is to store the start date and end data and the leauge id to "///     GET THE UPCOMING MATCHES      \\\"
   const [dateAndLeague, setDateAndLeague] = useState({
-    from: "",
-    To: "",
+    from: fromDate,
+    To: toDate,
     leagueId: "",
   });
-  let fromDate = new Date().toJSON().slice(0, 10);
 
-  let getDate = new Date();
-  let day = getDate.getDate() + 7;
-  let month = getDate.getMonth();
-  let year = getDate.getFullYear();
-  let toDate = `${day}-${month}-${year}`;
+  // this state is to store the 1- from: previous data  2- To: now date for the proevious component
+  const nowDate = new Date();
+  let nowDay = nowDate.getDate();
+  let nowMonth = nowDate.getMonth() + 1;
+  let nowYear = nowDate.getFullYear();
+
+  let currentDate = `${nowYear}-${nowMonth}-${nowDay}`;
+  let previousMonth = `${nowYear}-${nowMonth - 2}-${nowDay}`;
+  console.log(previousMonth);
+
+  // send the dat to the async fucniton as an object with the leauge id from the state
+  const myObject = {
+    current: currentDate,
+    previous: previousMonth,
+    id: dateAndLeague.leagueId,
+  };
 
   // set the league id to the date and league state
   function handeLOnChange(e) {
@@ -56,10 +81,23 @@ const Matches = () => {
       ...prevs,
       [e.target.name]: e.target.value,
     }));
+    //dispath the fetch when the league selected
   }
-  console.log("it reaches it");
 
-  console.log(dateAndLeague);
+  useEffect(() => {
+    if (dateAndLeague.leagueId !== "") {
+      dispatch(DateAndLeague(dateAndLeague));
+      dispatch(previousMatches(myObject));
+    }
+  }, [dateAndLeague.leagueId]);
+
+  // end matches details =======================================================================================
+
+  const nextMatches = useSelector((state) => state.matches.dateAndLeague) || []; // get the next matches to send it to the next component
+  const previouMatches =
+    useSelector((state) => state.matches.previousMatches) || []; // get the previous matches to send it to the previous component
+
+  //make new thunk and fetch the new api to get the previous matches for all leagues      and  new state
 
   if (Countries.length == 0) {
     return <Spinner />;
@@ -71,12 +109,20 @@ const Matches = () => {
         data-setbg="img/match/match-bg.jpg"
       >
         <div className="container">
-          <div className="bg-light d-flex align-items-center flex-wrap gap-2">
-            <div class="dropdown">
-              <button onClick={() => myFunction()} class="dropbtn">
+          {previouMatches !== null ? (
+            <h2 className="text-light mb-4">
+              select a <span id="colorRed">city</span> and a{" "}
+              <span id="colorRed">league</span> to see the results
+            </h2>
+          ) : (
+            ""
+          )}
+          <div className="select-div d-flex align-items-center flex-wrap gap-2 ">
+            <div className="dropdown">
+              <button onClick={() => myFunction()} className="dropbtn">
                 Select City
               </button>
-              <div id="myDropdown" class="dropdown-content">
+              <div id="myDropdown" className="pointer dropdown-content">
                 <input
                   className="pointer"
                   type="text"
@@ -87,7 +133,6 @@ const Matches = () => {
                   }
                 />
                 {allCountries.slice(2, 12)?.map((element) => {
-                  console.log(element.country_id);
                   return (
                     <div className="search">
                       <p onClick={() => changeIdState(element.country_id)}>
@@ -105,7 +150,7 @@ const Matches = () => {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-md-4 col">
               <select
                 className="col-md-8"
                 id="leagues"
@@ -122,34 +167,10 @@ const Matches = () => {
                 })}
               </select>
             </div>
-            <div className="col-md-4" id="date">
-              <form action="">
-                <label for="start">From:</label>
-                <input
-                  min={fromDate}
-                  name="from"
-                  value={dateAndLeague.from}
-                  onChange={handeLOnChange}
-                  type="date"
-                  id="start"
-                />
-
-                <label for="end">To:</label>
-                <input
-                  min={fromDate}
-                  max={toDate}
-                  value={dateAndLeague.To}
-                  onChange={handeLOnChange}
-                  type="date"
-                  name="To"
-                  id="end"
-                />
-              </form>
-            </div>
           </div>
-          <div className="row">
-            <RecentMatches />
-            <NextMatches />
+          <div className="row mt-5">
+            <RecentMatches previouMatches={previouMatches} />
+            <NextMatches nextMatches={nextMatches} />
           </div>
         </div>
       </section>
