@@ -40,7 +40,7 @@ function App() {
 
 
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/NewsDetailes/:id" element={<NewsDetailes />} />
+          <Route path="/NewsDetailes" element={<NewsDetailes />} />
         </Routes>
         <Footer />
       </BrowserRouter>
