@@ -2679,4 +2679,7 @@ ol {
 	.blog-hero-section {
 		height: 410px;
 	}
+	#footer-text{
+		color:red !important;
+	}
 }
