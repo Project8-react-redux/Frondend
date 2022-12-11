@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+
+
+
+
+
 
 export const Contact = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [massage, setMassage] = useState('')
+
+  const send = (e) => {
+    e.preventDefault()
+    const contact = {
+      name: name,
+      email: email,
+      massage: massage
+    }
+
+    axios.post("http://127.0.0.1:8000/api/contact", contact)
+
+    setName("")
+    setEmail("")
+    setMassage("")
+  }
   return (
     <>
       {/* Contact Section Begin */}
@@ -10,18 +35,18 @@ export const Contact = () => {
             <div className="col-lg-6">
               <div className="contact-form">
                 <h2>Contact Form</h2>
-                <form action="#">
+                <form onSubmit={send}>
                   <div className="group-in">
                     <label htmlFor="name">Name</label>
-                    <input type="text" id="name" />
+                    <input value={name} type="text" id="name" name="name" onChange={(e) => setName(e.target.value)} />
                   </div>
                   <div className="group-in">
                     <label htmlFor="email">Email</label>
-                    <input type="text" id="email" />
+                    <input value={email} type="text" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
                   </div>
                   <div className="group-in">
-                    <label htmlFor="message">Message</label>
-                    <textarea id="message" defaultValue={""} />
+                    <label htmlFor="massage">Massage</label>
+                    <textarea value={massage} id="massage" name="massage" onChange={(e) => setMassage(e.target.value)} />
                   </div>
                   <button type="submit">Submit Now</button>
                 </form>

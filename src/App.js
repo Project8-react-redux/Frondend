@@ -1,12 +1,14 @@
 /* eslint-disable no-undef */
 import $ from "jquery";
 
+
 import { useEffect } from "react";
 import { Contact } from "./pages/Contact";
 import { Home } from "./pages/Home";
 import { NewsDetailed } from "./pages/NewsDetailes";
 import { Result } from "./pages/Result";
 import { TeamAbout } from "./pages/TeamAbout";
+import About from "./pages/About";
 
 function App() {
   useEffect(() => {
@@ -122,6 +124,7 @@ function App() {
       <NewsDetailed />
       <Result />
       <Contact />
+      <About />
 
       {/* {"admin dashboard profile login register about " } */}
     </>
