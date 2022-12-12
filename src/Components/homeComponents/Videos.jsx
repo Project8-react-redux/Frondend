@@ -9,7 +9,6 @@ const Videos = () => {
   const dispatch = useDispatch();
   const { reloadJquery } = useJquery();
   const videos = useSelector((state) => state.videos.data);
-  console.log(videos);
   useEffect(() => {
     reloadJquery();
   });
