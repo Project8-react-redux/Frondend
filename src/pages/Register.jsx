@@ -25,7 +25,6 @@ function Register() {
   const navigate = useNavigate();
   const signIn = useSignIn();
   const [image, setImage] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
   const [userInfo, setUserInfo] = useState({
     first_name: "",
     last_name: "",
@@ -141,7 +140,7 @@ function Register() {
             className="text-center text-md-start d-flex flex-column justify-content-center"
           >
             <div
-              style={{ backgroundColor: "#0000008f", zIndex: 1 }}
+              style={{ backgroundColor: "rgb(85 15 36)", zIndex: 1 }}
               className="rounded-5 text-center"
             >
               <h3 className="my-5 display-3 fw-bold ls-tight px-3 text-light">
@@ -244,7 +243,7 @@ function Register() {
                     </div>
                   </MDBRow>
 
-                  <MDBBtn className="w-100 mb-2" size="md" color="dark">
+                  <MDBBtn className="w-100 mb-2" size="md" style={{backgroundColor:"#8A1538"}}>
                     sign up
                   </MDBBtn>
 
@@ -252,10 +251,13 @@ function Register() {
                   <MDBBtn
                     className="w-100 mb-2"
                     size="md"
-                    color="dark"
+                    
                     type="button"
-                    onClick={(e) => {
+                    style={{backgroundColor:"#8A1538"}} 
+                 
+                                         onClick={(e) => {
                       // handleRegister(e);
+                      //   handleRegister(e);
                     }}
                   >
                     sign up with <ImGoogle />

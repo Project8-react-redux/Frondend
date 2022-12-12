@@ -13,6 +13,8 @@ import { ImGoogle } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignIn } from "react-auth-kit";
 import axios from "axios";
+import LoginGoogle from "../Components/Google/login";
+import Logout from "../Components/Google/logout";
 
 function Login() {
   const [credential, seCredential] = useState({ email: "", password: "" });
@@ -110,7 +112,7 @@ function Login() {
             className="text-center text-md-start d-flex flex-column justify-content-center"
           >
             <div
-              style={{ backgroundColor: "#0000008f", zIndex: 1 }}
+              style={{ backgroundColor: "rgb(85 15 36)", zIndex: 1 }}
               className="rounded-5 text-center"
             >
               <h3 className="my-5 display-3 fw-bold ls-tight px-3 text-light">
@@ -123,7 +125,7 @@ function Login() {
               <MDBCardBody className="p-5">
                 <div className="text-center mb-3">
                   {/*  <img src={logo} height="60" alt="" loading="lazy" />*/}
-                  <h5 className="mt-3 m-0">Welcome Agin </h5>
+                  <h5 className="mt-3 m-0">Welcome Again </h5>
                 </div>
                 {error ? (
                   <div
@@ -154,8 +156,7 @@ function Login() {
                   <MDBBtn
                     className="w-100 mb-2"
                     size="md"
-                    color="dark"
-                    onClick={handleSubmit}
+                    style={{backgroundColor:"#8A1538"}}                     onClick={handleSubmit}
                   >
                     Login
                   </MDBBtn>
@@ -175,9 +176,11 @@ function Login() {
                   </MDBBtn>
                 )}
                 <p className="text-center mb-1">or </p>
-                <MDBBtn className="w-100 mb-2" size="md" color="dark">
-                  Login with <ImGoogle />
-                </MDBBtn>
+                {/* <MDBBtn className="w-100 mb-2" size="md" color="dark"> */}
+                    <LoginGoogle/>
+
+                    {/* <Logout /> */}
+                {/* </MDBBtn> */}
                 <div className="text-center mt-4">
                   you don't have account ?
                   <Link className="text-dark" to="/register">
