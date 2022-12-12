@@ -21,7 +21,7 @@ import { AllPosts } from "./pages/AllPosts";
 
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
-
+import Post from "./Components/NewsDetailes/Post";
 
 function App() {
   const { reloadJquery } = useJquery();
@@ -33,7 +33,7 @@ function App() {
     <>
       {/* <TeamAbout />*/}
       <BrowserRouter>
-        {/*     <Header />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -46,8 +46,8 @@ function App() {
           <Route path="/Blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-    <Footer />*/}
-        <Post />
+        <Footer />
+        {/* <Post /> */}
       </BrowserRouter>
 
       {/* {"admin dashboard profile login register about " } */}
