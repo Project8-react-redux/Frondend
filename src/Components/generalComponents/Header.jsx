@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+import { AiFillTwitterCircle} from 'react-icons/ai/';
+import { GrFacebookOption } from "react-icons/gr";
+import { AiOutlineYoutube } from "react-icons/ai";
+import { AiFillLinkedin } from "react-icons/ai";
+
+
 
 
 
@@ -6,7 +12,8 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
 
-
+    const current = new Date();
+    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
 
 
@@ -19,76 +26,86 @@ const Header = () => {
             <div className="offcanvas-menu-wrapper">
                 <div className="canvas-close">
                     <i className="fa fa-close" />
+
                 </div>
-                <div className="search-btn search-switch">
-                    <i className="fa fa-search" />
+              </div>
+              <div className="col-lg-6">
+                <div className="ht-links">
+                  <Link to={""}>
+                    <i className="fa fa-facebook" />
+                  </Link>
+                  <Link to={""}>
+                    <i className="fa fa-vimeo" />
+                  </Link>
+                  <Link to={""}>
+                    <i className="fa fa-twitter" />
+                  </Link>
+                  <Link to={""}>
+                    <i className="fa fa-google-plus" />
+                  </Link>
+                  <Link to={""}>
+                    <i className="fa fa-instagram" />
+                  </Link>
                 </div>
+
                 <div className="header__top--canvas">
                     <div className="ht-info">
                         <ul>
-                            <li>20:00 - May 19, 2019</li>
+                            <li> {date}
+</li>
                             <li>
-                                <Link to={'#'}>Sign in</Link>
+                                <Link to={'login'}>Sign in</Link>
                             </li>
                             <li>
-                                <Link to={'/Contact'}>Contact</Link>
+                                <Link to={'register'}>Register</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="ht-links">
-                        <Link to={"#"}>
-                            <i className="fa fa-facebook" />
-                        </Link>
-                        <Link to={"#"}>
-                            <i className="fa fa-vimeo" />
-                        </Link>
-                        <Link to={''}>
-                            <i className="fa fa-twitter" />
-                        </Link>
-                        <Link to={''}>
-                            <i className="fa fa-google-plus" />
-                        </Link>
-                        <Link to={''}>
-                            <i className="fa fa-instagram" />
-                        </Link>
+                    <a href={'/https://www.facebook.com/HAYYA-107115075582816'}> 
+                                    < GrFacebookOption/> </a>
+                                    <a href={'https://www.linkedin.com/company/hayya/?viewAsMember=true'}>
+                                    < AiFillLinkedin /></a>
+                                  
+                                    <a href={'https://twitter.com/jardat_rama'}>
+                                    <AiFillTwitterCircle /> </a>
+                                    <a href={'https://www.youtube.com/@hayya3947'}>
+                                    <AiOutlineYoutube /></a>
                     </div>
+
                 </div>
-                <ul className="main-menu mobile-menu">
-                    <li className="active">
-                        <Link to={"/"}>Home</Link>
+              </div>
+              <div className="col-lg-10">
+                <div className="nav-menu">
+                  <ul className="main-menu m-0">
+                    <li className="active ">
+                      <Link to={""}>Home</Link>
                     </li>
                     <li>
-                        <Link to={''}>Club</Link>
+                      <Link to={""}>Club</Link>
                     </li>
                     <li>
-                        <Link href="./schedule.html">Schedule</Link>
+                      <Link to={""}>Schedule</Link>
                     </li>
                     <li>
-                        <Link to={''}>Results</Link>
+                      <Link to={""}>Results</Link>
                     </li>
                     <li>
-                        <Link to={''}>Sport</Link>
-                    </li>
-                    <li>
-                        <Link to={''}>Pages</Link>
-                        <ul className="dropdown">
-                            <li>
-                                <Link to={''}>Blog</Link>
-                            </li>
-                            <li>
-                                <Link to={''}>Blog Details</Link>
-                            </li>
-                            <li>
-                                <Link to={''}>Schedule</Link>
-                            </li>
-                            <li>
-                                <Link to={''}>Results</Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
+
+
                         <Link to={'/Contact'}>Contact Us</Link>
                     </li>
+                    <li>
+                        <Link to={'/Profile'}>Profile</Link>
+                        <ul className="dropdown">
+                            <li>
+                                <Link to={''}>Logout</Link>
+                            </li>
+                           
+                           
+                        </ul>
+                    </li>
+
                 </ul>
                 <div id="mobile-menu-wrap" />
             </div>
@@ -100,34 +117,31 @@ const Header = () => {
                             <div className="col-lg-6">
                                 <div className="ht-info">
                                     <ul>
-                                        <li>20:00 - May 19, 2019</li>
+                                        <li> {date}
+</li>
                                         <li>
-                                            <Link to={''}>Sign in</Link>
-                                            
+                                            <Link to={'login'}>Sign in</Link>
+
                                         </li>
+
                                         <li>
-                                            <Link to={'/Contact'}>Contact</Link>
+                                            <Link to={'register'}>Register</Link>
                                         </li>
+
                                     </ul>
                                 </div>
                             </div>
                             <div className="col-lg-6">
                                 <div className="ht-links">
-                                    <Link to={''}>
-                                        <i className="fa fa-facebook" />
-                                    </Link>
-                                    <Link to={''}>
-                                        <i className="fa fa-vimeo" />
-                                    </Link>
-                                    <Link to={''}>
-                                        <i className="fa fa-twitter" />
-                                    </Link>
-                                    <Link to={''}>
-                                        <i className="fa fa-google-plus" />
-                                    </Link>
-                                    <Link to={''}>
-                                        <i className="fa fa-instagram" />
-                                    </Link>
+                                <a href={'/https://www.facebook.com/HAYYA-107115075582816'}> 
+                                    < GrFacebookOption/> </a>
+                                    <a href={'https://www.linkedin.com/company/hayya/?viewAsMember=true'}>
+                                    < AiFillLinkedin /></a>
+                                  
+                                    <a href={'https://twitter.com/jardat_rama'}>
+                                    <AiFillTwitterCircle /> </a>
+                                    <a href={'https://www.youtube.com/@hayya3947'}>
+                                    <AiOutlineYoutube /></a>
                                 </div>
                             </div>
                         </div>
@@ -150,41 +164,35 @@ const Header = () => {
                                             <Link to={''}>Home</Link>
                                         </li>
                                         <li>
-                                            <Link to={''}>Club</Link>
+                                            <Link to={'/Blog'}>News</Link>
                                         </li>
                                         <li>
-                                            <Link to={''}>Schedule</Link>
+                                            <Link to={''}>Review</Link>
                                         </li>
+                                       
+                                       
+                                       
                                         <li>
-                                            <Link to={''}>Results</Link>
-                                        </li>
-                                        <li>
-                                            <Link to={''}>Sport</Link>
-                                        </li>
-                                        <li>
-                                            <Link to={''}>Pages</Link>
-                                            <ul className="dropdown">
-                                                <li>
-                                                    <Link to={''}>Blog</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to={''}>Blog Details</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to={''}>Schedule</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to={''}>Results</Link>
-                                                </li>
-                                            </ul>
+                                            <Link to={'/About'}>About us</Link>
                                         </li>
                                         <li>
                                             <Link to={'Contact'}>Contact Us</Link>
                                         </li>
+
+                                        <li>
+                        <Link to={'/Profile'}>Profile</Link>
+                        <ul className="dropdown">
+                            <li>
+                                <Link to={''}>Logout</Link>
+                            </li>
+                           
+                           
+                        </ul>
+                    </li>
                                     </ul>
-                                    <div className="nm-right search-switch">
+                                    {/* <div className="nm-right search-switch">
                                         <i className="fa fa-search" />
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -194,9 +202,9 @@ const Header = () => {
                     </div>
                 </div>
             </header>
-            {/* end of header and nav bar */}
 
         </>
     )
 }
-export default Header ;
+export default Header;
+
