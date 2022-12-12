@@ -12,6 +12,8 @@ import {
 import { ImGoogle } from "react-icons/im";
 // import logo from "../asset/BrandFiles/3rood-low-resolution-logo-color-on-transparent-background.png";
 import { Link } from "react-router-dom";
+import LoginGoogle from "../Components/Google/login";
+import Logout from "../Components/Google/logout";
 
 function Login() {
   const [credential, seCredential] = useState({ email: "", password: "" });
@@ -63,9 +65,9 @@ function Login() {
               <MDBCardBody className="p-5">
                 <div className="text-center mb-3">
                   {/*  <img src={logo} height="60" alt="" loading="lazy" />*/}
-                  <h5 className="mt-3 m-0">Welcome Agin </h5>
+                  <h5 className="mt-3 m-0">Welcome Again </h5>
                 </div>
-
+                
                 <MDBInput
                   wrapperClass="mb-4"
                   label="Email"
@@ -107,9 +109,11 @@ function Login() {
                   // )
                 }
                 <p className="text-center mb-1">or </p>
-                <MDBBtn className="w-100 mb-2" size="md" color="dark">
-                  Login with <ImGoogle />
-                </MDBBtn>
+                {/* <MDBBtn className="w-100 mb-2" size="md" color="dark"> */}
+                    <LoginGoogle/>
+
+                    {/* <Logout /> */}
+                {/* </MDBBtn> */}
                 <div className="text-center mt-4">
                   you don't have account ?
                   <Link className="text-dark" to="/register">
