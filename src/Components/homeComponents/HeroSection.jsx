@@ -18,10 +18,12 @@ const HeroSection = () => {
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <div className="hs-text">
-                                                <h4>30 september 2019 / 9:00 GMT+0000</h4>
-                                                <h2>Airrosten VS Lerenort in London</h2>
-                                                <Link className="primary-btn">
-                                                    More Details
+                                                <h4>14 December 2022 / 10:00 PM</h4>
+                                                <h2>Morocco VS . France </h2>
+                                                <p> 
+                                                Start with us on the predictions journey and follow the latest match news with others                                                </p>
+                                                <Link className="primary-btn" to={'register'}>
+                                                    Start Now
                                                 </Link>
                                             </div>
                                         </div>
