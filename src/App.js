@@ -16,6 +16,8 @@ import { useJquery } from "./hooks/useJquery";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
+import Blog from "./pages/Blog";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const { reloadJquery } = useJquery();
@@ -38,9 +40,10 @@ function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Profile" element={<Profile />} />
 
-
           <Route path="/Contact" element={<Contact />} />
           <Route path="/NewsDetailes" element={<NewsDetailes />} />
+          <Route path="/Blog" element={<Blog />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
