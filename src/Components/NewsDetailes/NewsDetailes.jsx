@@ -22,18 +22,17 @@ export function NewsDetailes() {
   useEffect(() => {
     reloadJquery();
   });
-  console.log(articleDetail);
 
   useEffect(() => {
     dispatch(getArticles());
   }, []);
 
   useEffect(() => {
-    dispatch(getArticle(1));
+    dispatch(getArticle(30));
   }, [articles]);
 
   useEffect(() => {
-    dispatch(getRecentArticles(1));
+    dispatch(getRecentArticles(3));
   }, [articles]);
 
   if (!articleDetail) return <div> LOading ....</div>;

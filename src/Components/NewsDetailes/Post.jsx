@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Comments from "./Comments";
 
 function Post({ articleDetail, recentArticles }) {
-  // console.log(articles);
   return (
     <div>
       <section className="blog-details-section spad">
@@ -17,10 +16,7 @@ function Post({ articleDetail, recentArticles }) {
                   <div className="author ">
                     <span className="d-flex align-items-center">
                       By : &nbsp;<p> {articleDetail.author} </p>&nbsp;&nbsp;
-                      <i
-                        className="fa fa-calendar   "
-                        style={{ color: "red" }}
-                      />
+                      <i className="fa fa-calendar" style={{ color: "red" }} />
                       &nbsp;
                       {articleDetail.published_date}
                     </span>
@@ -37,17 +33,18 @@ function Post({ articleDetail, recentArticles }) {
                   <p>{articleDetail.summary}</p>
                 </div>
 
-                <Comments comments={articleDetail.comments} />
+                {/* <Comments comments={articleDetail.comments} /> */}
               </div>
             </div>
+
             <div className="col-lg-4">
               <div className="blog-sidebar">
                 <div className="follow-links">
                   <div className="bs-recent">
                     <div className="section-title sidebar-title">
-                      <h5>Recent Post</h5>
+                      <h5>Recent News</h5>
                     </div>
-                    {recentArticles.slice(0, 7).map((element) => {
+                    {recentArticles.slice(0, 5).map((element) => {
                       return (
                         <div className="news-item">
                           <div className="ni-pic">
@@ -64,10 +61,6 @@ function Post({ articleDetail, recentArticles }) {
                                 <i className="fa fa-calendar " />
 
                                 {element.published_date}
-                              </li>
-                              <li>
-                                <i className="fa fa-edit" />
-                                {element.comments.length} Comment
                               </li>
                             </ul>
                           </div>

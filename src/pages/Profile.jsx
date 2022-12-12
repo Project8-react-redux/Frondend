@@ -1,80 +1,153 @@
-import React from 'react';
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
+import React, { useEffect, useState } from "react";
+import {
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+  MDBCard,
+  MDBCardText,
+  MDBCardBody,
+  MDBCardImage,
+  MDBTypography,
+  MDBSpinner,
+} from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
+import { Posts } from "../Components/profileComponents/Posts";
+import { useAuthUser } from "react-auth-kit";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserData } from "../Reducers/ProfileReducer";
+import { useJquery } from "../hooks/useJquery";
 
-export default function profile() {
+function Profile() {
+  const auth = useAuthUser();
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.userData.data);
+  const { reloadJquery } = useJquery();
+
+  const config = {
+    method: "get",
+    url: "http://127.0.0.1:8000/api/profile",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization: `Bearer ${auth().token}`,
+    },
+  };
+  useEffect(() => {
+    reloadJquery();
+  });
+  useEffect(() => {
+    dispatch(fetchUserData(config));
+  }, []);
+  if (userData.length == 0) {
     return (
-        <div className="gradient-custom-2" style={{ backgroundColor: '#e9e9e9' }}>
-            <MDBContainer className="py-5 h-100">
-                <MDBRow className="justify-content-center align-items-center h-100">
-                    <MDBCol lg="9" xl="12">
-                        <MDBCard>
-                            <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
-                                <div className="ms-4 mt-5 d-flex flex-column" style={{ width: '150px' }}>
-                                    <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                                        alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
-                                    <MDBBtn outline color="dark" style={{ height: '36px', overflow: 'visible' }}>
-                                        Edit profile
-                                    </MDBBtn>
-                                </div>
-                                <div className="ms-3" style={{ marginTop: '130px' }}>
-                                    <MDBTypography tag="h5">Andy Horwitz</MDBTypography>
-                                    <MDBCardText>New York</MDBCardText>
-                                </div>
-                            </div>
-                            <div className="p-4 text-black" style={{ backgroundColor: '#f8f9fa' }}>
-                                <div className="d-flex justify-content-end text-center py-1">
-                                    <div>
-                                        <MDBCardText className="mb-1 h5">253</MDBCardText>
-                                        <MDBCardText className="small text-muted mb-0">Photos</MDBCardText>
-                                    </div>
-                                    <div className="px-3">
-                                        <MDBCardText className="mb-1 h5">1026</MDBCardText>
-                                        <MDBCardText className="small text-muted mb-0">Followers</MDBCardText>
-                                    </div>
-                                    <div>
-                                        <MDBCardText className="mb-1 h5">478</MDBCardText>
-                                        <MDBCardText className="small text-muted mb-0">Following</MDBCardText>
-                                    </div>
-                                </div>
-                            </div>
-                            <MDBCardBody className="text-black p-4">
-                                <div className="mb-5">
-                                    <p className="lead fw-normal mb-1">About</p>
-                                    <div className="p-4" style={{ backgroundColor: '#f8f9fa' }}>
-                                        <MDBCardText className="font-italic mb-1">Web Developer</MDBCardText>
-                                        <MDBCardText className="font-italic mb-1">Lives in New York</MDBCardText>
-                                        <MDBCardText className="font-italic mb-0">Photographer</MDBCardText>
-                                    </div>
-                                </div>
-                                <div className="d-flex justify-content-between align-items-center mb-4">
-                                    <MDBCardText className="lead fw-normal mb-0">Recent photos</MDBCardText>
-                                    <MDBCardText className="mb-0"><a href="#!" className="text-muted">Show all</a></MDBCardText>
-                                </div>
-                                <MDBRow>
-                                    <MDBCol className="mb-2">
-                                        <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                                            alt="image 1" className="w-100 rounded-3" />
-                                    </MDBCol>
-                                    <MDBCol className="mb-2">
-                                        <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                                            alt="image 1" className="w-100 rounded-3" />
-                                    </MDBCol>
-                                </MDBRow>
-                                <MDBRow className="g-2">
-                                    <MDBCol className="mb-2">
-                                        <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                                            alt="image 1" className="w-100 rounded-3" />
-                                    </MDBCol>
-                                    <MDBCol className="mb-2">
-                                        <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                                            alt="image 1" className="w-100 rounded-3" />
-                                    </MDBCol>
-                                </MDBRow>
-                            </MDBCardBody>
-                        </MDBCard>
-                    </MDBCol>
-                </MDBRow>
-            </MDBContainer>
-        </div>
+      <MDBSpinner className="me-2" style={{ width: "3rem", height: "3rem" }}>
+        <span className="visually-hidden">Loading...</span>
+      </MDBSpinner>
     );
+  }
+  return (
+    <div className="gradient-custom-2" style={{ backgroundColor: "#e9e9e9" }}>
+      <MDBContainer className="py-5 h-100">
+        <MDBRow className="justify-content-center align-items-center h-100">
+          <MDBCol lg="12" xl="12">
+            <MDBCard>
+              <div
+                className="rounded-top text-white d-flex flex-row"
+                style={{ backgroundColor: "#000", height: "200px" }}
+              >
+                <div
+                  className="ms-4 mt-5 d-flex flex-column"
+                  style={{ width: "180px" }}
+                >
+                  <MDBCardImage
+                    src={userData.data.profileImage}
+                    alt="Generic placeholder image"
+                    className="mt-4 mb-2 img-thumbnail"
+                    fluid
+                    style={{ width: "180px", zIndex: "1" }}
+                  />
+                </div>
+                <div
+                  className="ms-3 text-capitalize"
+                  style={{ marginTop: "130px" }}
+                >
+                  <MDBTypography tag="h5">
+                    {userData.data.firstName} {userData.data.lastName}
+                  </MDBTypography>
+                  <MDBCardText>{userData.data.email}</MDBCardText>
+                </div>
+              </div>
+              <div
+                className="p-4 text-black"
+                style={{ backgroundColor: "#f8f9fa" }}
+              >
+                <div className="d-flex justify-content-end text-center py-1">
+                  <div>
+                    <MDBCardText className="mb-1 h5">
+                      {userData.data.User_posts.length}
+                    </MDBCardText>
+                    <MDBCardText className="small text-muted mb-0">
+                      Posts
+                    </MDBCardText>
+                  </div>
+                  <div className="px-3">
+                    <MDBCardText className="mb-1 h5">
+                      {userData.data.userPoints}
+                    </MDBCardText>
+                    <MDBCardText className="small text-muted mb-0">
+                      Points
+                    </MDBCardText>
+                  </div>
+                </div>
+              </div>
+              <MDBCardBody className="text-black p-4">
+                {/* ----------------------------posts---------------------------------------- */}
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                  <MDBCardText className="lead fw-normal mb-0">
+                    Recent Posts
+                  </MDBCardText>
+                </div>
+                <MDBRow className="justify-content-center">
+                  {userData.data.User_posts.map((ele) => {
+                    return <Posts postData={ele} />;
+                  })}
+                </MDBRow>
+                <hr />
+                {/* -----------------------------saved news-------------------------------------- */}
+                <div className="">
+                  <p className="lead fw-normal mb-1">Saved News</p>
+                  <div className="mt-3 row">
+                    {console.log(userData.data)}
+                    {userData.data.saved_Articles.map((ele) => {
+                      return (
+                        <div className="col-md-4">
+                          <div
+                            className="news-item popular-item set-bg"
+                            data-setbg={ele.media}
+                            style={{ filter: "brightness(0.6)" }}
+                          >
+                            <div className="ni-text">
+                              <h5>
+                                <Link to={""}>{ele.title}</Link>
+                              </h5>
+                              <ul>
+                                <li>
+                                  <i className="fa fa-calendar" /> May 19, 2019
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    </div>
+  );
 }
+export default Profile;

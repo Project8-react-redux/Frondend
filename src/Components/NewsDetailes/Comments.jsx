@@ -33,44 +33,6 @@ function Comments({ comments }) {
             </div>
           );
         })}
-        {/*   <div className="single-comment-item reply-comment">
-          <div className="sc-author">
-            <img src="img/blog/details/comment/comment-2.jpg" alt="" />
-          </div>
-          <div className="sc-text">
-            <span>27 Aug 2019</span>
-            <h5>Brandon Kelley</h5>
-            <p>
-              Vasse Felix chief executive, Paul Holmes a Court said no plans
-              have yet been made for the buildings on the property.
-            </p>
-            <a href="#" className="comment-btn like-btn">
-              Like
-            </a>
-            <a href="#" className="comment-btn">
-              Reply
-            </a>
-          </div>
-        </div>
-        <div className="single-comment-item second-comment ">
-          <div className="sc-author">
-            <img src="img/blog/details/comment/comment-3.jpg" alt="" />
-          </div>
-          <div className="sc-text">
-            <span>27 Aug 2019</span>
-            <h5>Brandon Kelley</h5>
-            <p>
-              Vasse Felix chief executive, Paul Holmes a Court said no plans
-              have yet been made for the buildings on the property.
-            </p>
-            <a href="#" className="comment-btn like-btn">
-              Like
-            </a>
-            <a href="#" className="comment-btn">
-              Reply
-            </a>
-          </div>
-  </div>*/}
       </div>
       <div className="comment-form">
         <h4>Leave A Comment</h4>
