@@ -1,197 +1,147 @@
 import { Link } from "react-router-dom";
-
+import "./matches.css";
+import { MDBBtn } from "mdb-react-ui-kit";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getArticles } from "../../Reducers/ArticleReducer";
-
+import { useEffect, useState } from "react";
+import { getExpectation } from "../../Reducers/ExpectationReducer";
+import { useJquery } from "../../hooks/useJquery";
+import { MDBInput } from "mdb-react-ui-kit";
+import axios from "axios";
+import { logDOM } from "@testing-library/react";
+import { useAuthUser } from "react-auth-kit";
+import { ImArrowUpRight2 } from "react-icons/im";
 const Popular = () => {
+  const auth = useAuthUser();
+  const { reloadJquery } = useJquery();
+
+  const [expectationData, setExpectationData] = useState({
+    team_1: 0,
+    team_2: 0,
+    expectation_id: 0,
+    user_id: 0,
+  });
+
   const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articles);
+  const expectations = useSelector(
+    (state) => state.expectationData.articlesData
+  );
 
-  //   console.log(articles);
   useEffect(() => {
-    dispatch(getArticles());
+    dispatch(getExpectation());
   }, []);
-  //   if (articles.Length === 0) return "loading...";
 
+  useEffect(() => {
+    reloadJquery();
+  });
 
+  function handeLOnChange(e) {
+    setExpectationData(() => ({
+      ...expectationData,
+      [e.target.name]: e.target.value,
+    }));
+  }
+  function handelOnSubmit(id) {
+    console.log(auth());
+    const config = {
+      method: "post",
+      url: "http://localhost:8000/api/addExpectation",
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      data: {
+        expect: `${expectationData.team_1}-${expectationData.team_2}`,
+        expectation_id: id,
+        user_id: auth().user.user_id,
+      },
+    };
+    axios(config).then((response) => {
+      console.log(response);
+    });
+  }
+  console.log(expectationData);
   return (
     <>
       {/* start popular section */}
       <section className="popular-section">
         <div className="container">
           <div className="row">
-
             <div className="col-lg-8">
-
               <div className="section-title">
                 <h3>
                   Popular <span>Post</span>
                 </h3>
               </div>
               <div className="row">
-                <div className="col-md-6">
-                  <div
-                    className="news-item popular-item set-bg"
-                    data-setbg="img/news/popular-b.jpg"
-                  >
-                    <div className="ni-tag tenis">Tenis</div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>
-                          England reach World Cup last 16 with hard-fought win
-                          over Argentina
-                        </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-1.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>
-                          There’s a great history of the winner Sandia
-                        </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-2.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>
-                          It’ll be a tough game and a physical game
-                        </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-3.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>
-                          If we don’t score we can’t get frustrated
-                        </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div
-                    className="news-item popular-item set-bg"
-                    data-setbg="img/news/popular-b.jpg"
-                  >
-                    <div className="ni-tag football">Football</div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>
-                          We are playing history and Argentina at the World Cup,
-                          says Phil Neville
-                        </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-5.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>
-                          Le Havre does have a growing fan club
-                        </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-6.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>It will be hard to break them down</Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-7.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <Link to={""}>We’ve never seen them as organised </Link>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
+                <div className="col-md-12">
+                  <div>
+                    <>
+                      <div className="ms-content">
+                        <h4>Next Match</h4>
+                        <div className="mc-table ">
+                          <table>
+                            <tbody>
+                              {expectations?.map((expectation) => {
+                                return (
+                                  <>
+                                    <tr key={expectation.id}>
+                                      <td className="left-team">
+                                        <img
+                                          src={expectation.team_2_picture}
+                                          alt=""
+                                        />
+                                        <h6>{expectation.team_2}</h6>
+                                        <div>
+                                          <MDBInput
+                                            label="Number input"
+                                            id="typeNumber"
+                                            type="number"
+                                            name="team_2"
+                                            onChange={handeLOnChange}
+                                          />
+                                        </div>
+                                      </td>
+
+                                      <td className="mt-content">
+                                        <h4>VS</h4>
+                                        <MDBBtn
+                                          color="light"
+                                          rippleColor="dark"
+                                          type="button"
+                                          onClick={() =>
+                                            handelOnSubmit(expectation.id)
+                                          }
+                                        >
+                                          Submit
+                                        </MDBBtn>
+                                      </td>
+                                      <td className="left-team">
+                                        <img
+                                          src={expectation.team_1_picture}
+                                          alt=""
+                                        />
+                                        <h6>{expectation.team_1}</h6>
+                                        <div>
+                                          <MDBInput
+                                            label="Number input"
+                                            id="typeNumber"
+                                            type="number"
+                                            className="me-3"
+                                            name="team_1"
+                                            onChange={handeLOnChange}
+                                          />
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <hr className="text-dark" />
+                                  </>
+                                );
+                              })}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </>
                   </div>
                 </div>
               </div>
@@ -247,7 +197,6 @@ const Popular = () => {
                 </div>
  </div>*/}
             </div>
-
           </div>
         </div>
       </section>
