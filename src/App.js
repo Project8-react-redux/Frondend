@@ -33,7 +33,7 @@ function App() {
     <>
       {/* <TeamAbout />*/}
       <BrowserRouter>
-        <Header />
+        {/*     <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -46,7 +46,8 @@ function App() {
           <Route path="/Blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
+    <Footer />*/}
+        <Post />
       </BrowserRouter>
 
       {/* {"admin dashboard profile login register about " } */}
