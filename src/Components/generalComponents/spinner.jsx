@@ -1,3 +1,4 @@
+import FootballSnippet from "../FootballSnippet/FootballSnippet";
 
 
 
@@ -11,7 +12,7 @@ const Spinner = () => {
             <div id="preloder">
                 <div className="loader" />
             </div>
-
+            {/* <FootballSnippet/ > */}
         </>
     )
 

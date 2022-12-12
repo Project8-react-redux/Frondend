@@ -12,6 +12,7 @@ import "./matches.css";
 import Spinner from "../generalComponents/spinner";
 import { Link } from "react-router-dom";
 import { Leagues } from "../../Reducers/MatchesReducer";
+import FootballSnippet from "../FootballSnippet/FootballSnippet";
 
 const Matches = () => {
   //dipatch all countries || read all countries===========================================================
@@ -100,7 +101,8 @@ const Matches = () => {
   //make new thunk and fetch the new api to get the previous matches for all leagues      and  new state
 
   if (Countries.length == 0) {
-    return <Spinner />;
+    // return <Spinner />;
+    return <FootballSnippet />
   }
   return (
     <>

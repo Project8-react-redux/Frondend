@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import './about.css'
+import { Link } from 'react-router-dom';
 
 function About() {
     useEffect(() => {
@@ -29,7 +30,7 @@ function About() {
 
                             <p>website is an sports news website in the Middle East, headquartered in Jordan, owned by United Media Group,The site was established in 2022 and has specialized in providing exclusive sports news, videos, live broadcast of events, match summaries, TV broadcast schedules and many other services that address the Arab world</p>
 
-                            <a href="../contact" title="About Us Button">CONTACT US</a>
+                            <Link to={"../contact"} title="About Us Button">CONTACT US</Link>
 
                         </div>
 
@@ -39,7 +40,7 @@ function About() {
 
                         <div class="history-image" >
 
-                            <img src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="951" height="471" alt="Building Pic" />
+                            <img src="https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" width="808" height="" alt="Building Pic" />
 
                         </div>
 
@@ -49,7 +50,7 @@ function About() {
 
                             <p>Our website will also provide you with the best experience for watching matches, daily summaries in all tournaments, by working to put all the details for each match through a special page for each match, to which the channels transmitting match summaries and commentators are provided, and match summaries are provided for most Arab countries, while ensuring that the latest news is posted. European and Arab sports, local and international, that the site will provide you with full information about all European and Arab teams</p>
 
-                            <a href="./" title="History Button">RESULTS</a>
+                            <Link to={"/"} title="History Button">RESULTS</Link>
 
                         </div>
 
