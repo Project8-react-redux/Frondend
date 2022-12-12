@@ -17,6 +17,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 
+
 function App() {
   const { reloadJquery } = useJquery();
 
