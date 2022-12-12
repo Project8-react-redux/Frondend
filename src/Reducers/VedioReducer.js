@@ -37,7 +37,6 @@ export const VideosReducer = createSlice({
   },
   extraReducers: {
     [fetchVideo.fulfilled]: (state, action) => {
-      // console.log(action);
       state.data = action.payload;
     },
   },

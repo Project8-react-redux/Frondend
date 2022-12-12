@@ -25,7 +25,6 @@ function Register() {
   const navigate = useNavigate();
   const signIn = useSignIn();
   const [image, setImage] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
   const [userInfo, setUserInfo] = useState({
     first_name: "",
     last_name: "",

@@ -16,8 +16,12 @@ import { useJquery } from "./hooks/useJquery";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Profile from "./pages/Profile";
 import About from "./pages/About";
+
+import { AllPosts } from "./pages/AllPosts";
+
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
+
 
 function App() {
   const { reloadJquery } = useJquery();
@@ -27,10 +31,7 @@ function App() {
   });
   return (
     <>
-      {/* <TeamAbout />
-      <NewsDetailed /> */}
-      {/* <Result /> */}
-      {/* <Contact /> */}
+      {/* <TeamAbout />*/}
       <BrowserRouter>
         <Header />
         <Routes>
@@ -39,7 +40,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/About" element={<About />} />
           <Route path="/Profile" element={<Profile />} />
-
+          <Route path="/post" element={<AllPosts />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/NewsDetailes" element={<NewsDetailes />} />
           <Route path="/Blog" element={<Blog />} />
