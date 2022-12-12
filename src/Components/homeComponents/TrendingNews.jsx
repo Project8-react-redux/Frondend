@@ -1,33 +1,39 @@
-
-
-
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { getArticles } from "../../Reducers/ArticleReducer";
+import { useJquery } from "../../hooks/useJquery";
 
 const TrendingNews = () => {
+  const articles = useSelector((state) => state.articles.articlesData);
+  const dispatch = useDispatch();
+  const { reloadJquery } = useJquery();
 
+  useEffect(() => {
+    reloadJquery();
+  });
 
-    return (
-        <>
+  useEffect(() => {
+    dispatch(getArticles());
+  }, []);
 
-            {/* treding news (slider)======================== */}
-            <div className="trending-news-section">
-                <div className="container">
-                    <div className="tn-title">
-                        <i className="fa fa-caret-right" /> Trending News
-                    </div>
-                    <div className="news-slider owl-carousel">
-                        <div className="nt-item ms-3">
-                         The latest football news you can find in our page
-                        </div>
-                        <div className="nt-item ms-3">
-                            Fifa world cup is about to finish who will be the Hero !!
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/* trending news end============================= */}
-
-        </>
-    )
-}
+  return (
+    <>
+      {/* treding news (slider)======================== */}
+      <div className="trending-news-section">
+        <div className="container">
+          <div className="tn-title">
+            <i className="fa fa-caret-right" /> Trending News
+          </div>
+          <div className="news-slider owl-carousel">
+            {articles?.slice(0, 2).map((news) => {
+              return <div className="nt-item ms-3">{news.title}</div>;
+            })}
+          </div>
+        </div>
+      </div>
+      {/* trending news end============================= */}
+    </>
+  );
+};
 
 export default TrendingNews;
