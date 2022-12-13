@@ -40,9 +40,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/About" element={<About />} />
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/post" element={<AllPosts />} />
+          <Route path="/Community" element={<AllPosts />} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/NewsDetailes" element={<NewsDetailes />} />
+          <Route path="/NewsDetailes/:id" element={<NewsDetailes />} />
           <Route path="/Blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -6,7 +6,6 @@ export const fetchUserData = createAsyncThunk(
   "userProfile/fetchVideo",
   async (options) => {
     const response = await axios.request(options);
-    console.log(response);
     return response.data;
   }
 );

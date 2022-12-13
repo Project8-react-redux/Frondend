@@ -13,45 +13,36 @@ import {
   MDBTextArea,
   MDBTypography,
 } from "mdb-react-ui-kit";
-
-import { useSelector } from "react-redux";
 import { useAuthUser } from "react-auth-kit";
 import { useJquery } from "../hooks/useJquery";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { fetchUserData } from "../Reducers/ProfileReducer";
 
-export default function SinglePost({ postId, toggleShow }) {
+export default function PostINAll({ postData }) {
   const { reloadJquery } = useJquery();
+
   useEffect(() => {
     reloadJquery();
   });
-  const userPosts = useSelector(
-    (state) =>
-      state.userData.data.data.User_posts.filter((ele) => {
-        return ele.postId === postId;
-      })[0]
-  );
-  const [comment, setComment] = useState({ content: "", post_id: postId });
   const auth = useAuthUser();
+  const [comment, setComment] = useState({
+    content: "",
+    post_id: postData.postId,
+  });
+  const dispatch = useDispatch();
+
   const config = {
-    method: "post",
-    url: "http://127.0.0.1:8000/api/comment",
+    method: "get",
+    url: "http://127.0.0.1:8000/api/profile",
     headers: {
       Accept: "application/vnd.api+json",
       "Content-Type": "application/vnd.api+json",
-      Authorization: "Bearer 4|qolVZ8XAw2ntBvUlrZnfeZsTeMNYWQ51cae8RKs3",
+      Authorization: `Bearer ${auth().token}`,
     },
-    data: comment,
   };
-  const handleComment = () => {
-    axios(config)
-      .then(function (response) {
-        console.log(response.data);
-        // toggleShow();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  useEffect(() => {
+    dispatch(fetchUserData(config));
+  }, []);
   return (
     <section>
       <MDBContainer className="py-3" style={{ maxWidth: "1000px" }}>
@@ -62,28 +53,28 @@ export default function SinglePost({ postId, toggleShow }) {
                 <div className="d-flex flex-start align-items-center">
                   <MDBCardImage
                     className="rounded-circle shadow-1-strong me-3"
-                    src={userPosts.post_Owner_photo}
+                    src={postData.post_Owner_photo}
                     alt="avatar"
                     width="60"
                     height="60"
                   />
                   <div>
                     <h6 className="fw-bold text-primary mb-1">
-                      {userPosts.postOwner}
+                      {postData.postOwner}
                     </h6>
                     <p className="text-muted small mb-0">
-                      {userPosts.created_at.split("T")[0]} at{" "}
-                      {userPosts.created_at.split("T")[1].slice(0, 5)}
+                      {postData.created_at.split("T")[0]} at{" "}
+                      {postData.created_at.split("T")[1].slice(0, 5)}
                     </p>
                   </div>
                 </div>
 
-                <p className="mt-3 mb-4 pb-2">{userPosts.content}</p>
+                <p className="mt-3 mb-4 pb-2">{postData.content}</p>
 
                 <MDBAccordion flush className="p-0">
                   <MDBAccordionItem collapseId={1} headerTitle="Show Comments">
                     <MDBCardBody className="p-0 py-2">
-                      {userPosts.postComments.map((comment) => {
+                      {postData.postComments.map((comment) => {
                         return (
                           <div className="d-flex flex-start py-4">
                             <MDBCardImage
@@ -130,17 +121,14 @@ export default function SinglePost({ postId, toggleShow }) {
                     label="Message"
                     id="textAreaExample"
                     rows={2}
-                    onChange={(e) => {
-                      setComment((pervs) => ({
-                        ...pervs,
-                        content: e.target.value,
-                      }));
-                    }}
                     style={{ backgroundColor: "#fff" }}
                     wrapperClass="w-100"
+                    onChange={(e) => {
+                      setComment(e.target.value);
+                    }}
                   />
                   <div className="d-flex align-items-center mx-2">
-                    <MDBBtn onClick={handleComment}>
+                    <MDBBtn>
                       <i class="fas fa-paper-plane"></i>
                     </MDBBtn>
                   </div>

@@ -7,7 +7,7 @@ import { getArticles } from "../../Reducers/ArticleReducer";
 const LastesNews = () => {
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles.articlesData);
-  console.log(articles);
+
   useEffect(() => {
     dispatch(getArticles());
   }, []);
@@ -25,10 +25,7 @@ const LastesNews = () => {
                   Latest <span>News</span>
                 </h3>
                 <ul>
-                  <li>All</li>
-                  <li>World Cup</li>
-                  <li>Champions</li>
-                  <li>MLS</li>
+                  <li></li>
                 </ul>
               </div>
               <div className="row">
@@ -39,9 +36,7 @@ const LastesNews = () => {
                     </div>
                     <div className="ni-text">
                       <h4>
-
                         <Link to={""}>{articles[0]?.title}</Link>
-
                       </h4>
                       <ul>
                         <li>
@@ -54,14 +49,11 @@ const LastesNews = () => {
                       </ul>
 
                       <p>{articles[0]?.excerpt}</p>
-
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6">
-
                   {articles.slice(1, 4)?.map((element) => {
-                    // console.log(element);
                     return (
                       <div className="news-item">
                         <div className="ni-pic">
@@ -86,7 +78,6 @@ const LastesNews = () => {
                       </div>
                     );
                   })}
-
                 </div>
               </div>
             </div>
@@ -213,4 +204,3 @@ const LastesNews = () => {
 };
 
 export default LastesNews;
-
