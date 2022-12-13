@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+
+
+
+
+
 
 
 export const ContactForm = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [massage, setMassage] = useState('')
+
+  const send = (e) => {
+    e.preventDefault()
+    const contact = {
+      name: name,
+      email: email,
+      massage: massage
+    }
+
+    axios.post("http://127.0.0.1:8000/api/Contact", contact)
+
+    setName("")
+    setEmail("")
+    setMassage("")
+  }
   return (
     <>
       {/* Contact Section Begin */}
@@ -11,18 +35,18 @@ export const ContactForm = () => {
             <div className="col-lg-6">
               <div className="contact-form">
                 <h2>Contact Form</h2>
-                <form action="#">
+                <form onSubmit={send}>
                   <div className="group-in">
                     <label htmlFor="name">Name</label>
-                    <input type="text" id="name" />
+                    <input value={name} type="text" id="name" name="name" onChange={(e) => setName(e.target.value)} />
                   </div>
                   <div className="group-in">
                     <label htmlFor="email">Email</label>
-                    <input type="text" id="email" />
+                    <input value={email} type="text" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
                   </div>
                   <div className="group-in">
-                    <label htmlFor="message">Message</label>
-                    <textarea id="message" defaultValue={""} />
+                    <label htmlFor="massage">Massage</label>
+                    <textarea value={massage} id="massage" name="massage" onChange={(e) => setMassage(e.target.value)} />
                   </div>
                   <button type="submit">Submit Now</button>
                 </form>
@@ -32,22 +56,25 @@ export const ContactForm = () => {
               <div className="contact-info">
                 <h2>Contact Info</h2>
                 <p>
-                We’re here to help and answer any question you might have.<br></br> We look forward to hearing from you.
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                  The point of using Lorem Ipsum is that it has a distribution
+                  of letters.
                 </p>
                 <div className="ci-address">
-                  <h5>Amman </h5>
+                  <h5>New York Office</h5>
                   <ul>
-                    <li>Wasfi Altall St. Jordan Amman</li>
-                    <li>+962778084901</li>
-                    <li>info@gmail.com </li>
+                    <li>T8/480 Collins St, Melbourne VIC 3000, New York</li>
+                    <li>1-234-567-89011</li>
+                    <li>info.colorlib@gmail.com </li>
                   </ul>
                 </div>
                 <div className="ci-address">
-                  <h5>Irbid</h5>
+                  <h5>Australia Office</h5>
                   <ul>
-                    <li>Jordan Irbid</li>
-                    <li>+962778084596</li>
-                    <li>info2.@gmail.com </li>
+                    <li>Forrest Ray, 191-103 Integer Rd, Corona Australia</li>
+                    <li>1-234-567-89011</li>
+                    <li>info.colorlib@gmail.com </li>
                   </ul>
                 </div>
               </div>

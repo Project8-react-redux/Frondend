@@ -87,6 +87,7 @@ const Header = () => {
                             </li>
                         </ul>
                     </li>
+
                     <li>
                         <Link to={'/Contact'}>Contact Us</Link>
                     </li>
@@ -104,11 +105,13 @@ const Header = () => {
                                         <li>20:00 - May 19, 2019</li>
                                         <li>
                                             <Link to={''}>Sign in</Link>
-                                            
+
                                         </li>
+
                                         <li>
                                             <Link to={'/Contact'}>Contact</Link>
                                         </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -180,6 +183,9 @@ const Header = () => {
                                             </ul>
                                         </li>
                                         <li>
+                                            <Link to={'/About'}>About us</Link>
+                                        </li>
+                                        <li>
                                             <Link to={'Contact'}>Contact Us</Link>
                                         </li>
                                     </ul>
@@ -200,4 +206,4 @@ const Header = () => {
         </>
     )
 }
-export default Header ;
+export default Header;

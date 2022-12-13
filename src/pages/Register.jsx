@@ -14,20 +14,102 @@ import { ImGoogle } from "react-icons/im";
 // import logo from "../asset/BrandFiles/3rood-low-resolution-logo-color-on-transparent-background.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import useValidation from "../hooks/useValidation";
+import axios from "axios";
+import { useSignIn } from "react-auth-kit";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../fierbase";
+import { v4 } from "uuid";
 
 function Register() {
+  const navigate = useNavigate();
+  const signIn = useSignIn();
+  const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
   const [userInfo, setUserInfo] = useState({
     first_name: "",
     last_name: "",
     password: "",
+    profile_image: "",
     password_confirmation: "",
     email: "",
   });
-
+  const {
+    NameValidation,
+    emailValidation,
+    passwordValidation,
+    message,
+    setMessage,
+    isNotEmptyValidation,
+  } = useValidation();
+  const config = {
+    method: "post",
+    url: "http://127.0.0.1:8000/api/register",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+    },
+    data: userInfo,
+  };
   const handleOnChange = (e) => {
     setUserInfo((pervs) => ({ ...pervs, [e.target.name]: e.target.value }));
   };
-
+  const checkValidation = () => {
+    let fName = NameValidation("first_name", userInfo.first_name);
+    let lName = NameValidation("last_name", userInfo.last_name);
+    let email = emailValidation(userInfo.email);
+    let profile_image = isNotEmptyValidation(
+      "profile_image",
+      userInfo.profile_image
+    );
+    let pass = passwordValidation(
+      userInfo.password,
+      userInfo.password_confirmation
+    );
+    if (fName && lName && email && pass && profile_image) {
+      return true;
+    } else return false;
+  };
+  const uploadImage = () => {
+    if (image == null) return;
+    const imageRef = ref(storage, `userImage/${image.name + v4()}`);
+    uploadBytes(imageRef, image).then((res) => {
+      console.log(res);
+      getDownloadURL(res.ref).then((response) => {
+        console.log(response);
+        setUserInfo((pervs) => ({ ...pervs, profile_image: response }));
+      });
+    });
+  };
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (checkValidation()) {
+      console.log(userInfo);
+      axios(config)
+        .then(function (res) {
+          if (
+            signIn({
+              token: res.data.token,
+              expiresIn: 1000,
+              tokenType: "Bearer",
+              authState: {
+                user: res.data.data.user,
+                token: res.data.data.token,
+                role: res.data.data.user.role,
+              },
+            })
+          ) {
+            return navigate("/");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+          setMessage({
+            email: error.response.data.message,
+          });
+        });
+    }
+  };
   return (
     <>
       <MDBContainer
@@ -70,7 +152,7 @@ function Register() {
           <MDBCol md="5">
             <form
               onSubmit={(e) => {
-                // handleRegister(e)
+                handleRegister(e);
               }}
             >
               <MDBCard className="my-5">
@@ -80,6 +162,9 @@ function Register() {
                   </div>
                   <MDBRow className="d-flex justify-content-between">
                     <div className="col-6 ">
+                      <p className="text-danger m-0 small">
+                        {message.first_name}
+                      </p>
                       <MDBInput
                         wrapperClass="mb-4"
                         label="First Name"
@@ -90,6 +175,9 @@ function Register() {
                       />
                     </div>
                     <div className="col-6 ">
+                      <p className="text-danger m-0 small">
+                        {message.last_name}
+                      </p>
                       <MDBInput
                         wrapperClass="mb-4"
                         label="Last Name"
@@ -99,8 +187,8 @@ function Register() {
                         onChange={handleOnChange}
                       />
                     </div>
-
                     <div className="col-12 ">
+                      <p className="text-danger m-0 small">{message.email}</p>
                       <MDBInput
                         wrapperClass="mb-4"
                         label="Email"
@@ -109,7 +197,33 @@ function Register() {
                         onChange={handleOnChange}
                       />
                     </div>
+                    <p className="text-danger m-0 small">
+                      {message.profile_image}
+                    </p>
 
+                    <p className="m-0">profile image</p>
+                    <div className="col-8">
+                      <MDBInput
+                        wrapperClass="mb-4"
+                        type="file"
+                        name="profile_image"
+                        onChange={(e) => {
+                          setImage(e.target.files[0]);
+                        }}
+                      />
+                    </div>
+                    <div className="col-4 ">
+                      <MDBBtn
+                        className="w-100 mb-2"
+                        size="md"
+                        color="dark"
+                        type="button"
+                        onClick={uploadImage}
+                      >
+                        <i class="fas fa-cloud-upload-alt"></i>
+                      </MDBBtn>
+                    </div>
+                    <p className="text-danger m-0 small">{message.password}</p>
                     <div className="col-6 ">
                       <MDBInput
                         wrapperClass="mb-4"
@@ -138,7 +252,12 @@ function Register() {
                   <MDBBtn
                     className="w-100 mb-2"
                     size="md"
-                    style={{backgroundColor:"#8A1538"}}                    onClick={(e) => {
+                    
+                    type="button"
+                    style={{backgroundColor:"#8A1538"}} 
+                 
+                                         onClick={(e) => {
+                      // handleRegister(e);
                       //   handleRegister(e);
                     }}
                   >
