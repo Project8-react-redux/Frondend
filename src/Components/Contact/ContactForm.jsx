@@ -1,31 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-
-
-
-
-
-
 export const ContactForm = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [massage, setMassage] = useState('')
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [massage, setMassage] = useState("");
 
   const send = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const contact = {
       name: name,
       email: email,
-      massage: massage
-    }
+      massage: massage,
+    };
 
-    axios.post("http://127.0.0.1:8000/api/Contact", contact)
+    axios.post("http://127.0.0.1:8000/api/Contact", contact);
 
-    setName("")
-    setEmail("")
-    setMassage("")
-  }
+    setName("");
+    setEmail("");
+    setMassage("");
+  };
   return (
     <>
       {/* Contact Section Begin */}
@@ -38,15 +32,32 @@ export const ContactForm = () => {
                 <form onSubmit={send}>
                   <div className="group-in">
                     <label htmlFor="name">Name</label>
-                    <input value={name} type="text" id="name" name="name" onChange={(e) => setName(e.target.value)} />
+                    <input
+                      value={name}
+                      type="text"
+                      id="name"
+                      name="name"
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </div>
                   <div className="group-in">
                     <label htmlFor="email">Email</label>
-                    <input value={email} type="text" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+                    <input
+                      value={email}
+                      type="text"
+                      id="email"
+                      name="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
                   <div className="group-in">
                     <label htmlFor="massage">Massage</label>
-                    <textarea value={massage} id="massage" name="massage" onChange={(e) => setMassage(e.target.value)} />
+                    <textarea
+                      value={massage}
+                      id="massage"
+                      name="massage"
+                      onChange={(e) => setMassage(e.target.value)}
+                    />
                   </div>
                   <button type="submit">Submit Now</button>
                 </form>

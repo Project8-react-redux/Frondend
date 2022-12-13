@@ -107,6 +107,7 @@ const Matches = () => {
       <section
         className="match-section set-bg"
         data-setbg="img/match/match-bg.jpg"
+        style={{ filter: "drop-shadow(-90px -50px 18px black)" }}
       >
         <div className="container">
           {previouMatches !== null ? (
@@ -149,7 +150,6 @@ const Matches = () => {
                 })}
               </div>
             </div>
-            
 
             <div className="col-md-4 col">
               <select

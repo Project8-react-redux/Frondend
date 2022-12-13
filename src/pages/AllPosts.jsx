@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useJquery } from "../hooks/useJquery";
+import { getApprovedPosts, getPosts } from "../Reducers/PostReduser";
+import PostINAll from "./PostINAll";
 import Post from "./Posts";
+import $ from "jquery";
 
 export const AllPosts = () => {
+  const { reloadJquery } = useJquery();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    reloadJquery();
+  });
+  const approved = useSelector((state) => state.postsData.postsData);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+  console.log(approved);
+  useEffect(() => {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }, []);
   return (
     <>
       <section className="popular-section">
         <div className="container">
           <div className="row">
             <div className="col-lg-8 my-4">
+              {approved.map((ele) => {
+                return <PostINAll postData={ele} />;
+              })}
               {/* <Post />
-              <Post />
               <Post />
               <Post /> */}
             </div>

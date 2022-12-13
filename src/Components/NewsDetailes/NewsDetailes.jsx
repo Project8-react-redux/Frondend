@@ -11,10 +11,11 @@ import {
 } from "../../Reducers/ArticleReducer";
 import { useParams } from "react-router-dom";
 import { useJquery } from "../../hooks/useJquery";
+import $ from "jquery";
 
 export function NewsDetailes() {
   const { reloadJquery } = useJquery();
-  //   const { id } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const articleDetail = useSelector((state) => state.articles.articleDetail[0]);
   const articles = useSelector((state) => state.articles.articlesData);
@@ -28,20 +29,20 @@ export function NewsDetailes() {
   }, []);
 
   useEffect(() => {
-    dispatch(getArticle(30));
-  }, [articles]);
+    dispatch(getArticle(id));
+  }, [articles, id]);
 
   useEffect(() => {
-    dispatch(getRecentArticles(3));
-  }, [articles]);
-
+    dispatch(getRecentArticles(id));
+  }, [articles, id]);
+  useEffect(() => {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }, [id]);
   if (!articleDetail) return <div> LOading ....</div>;
   return (
-    <div>
-      <>
-        <HeroDetailes articleDetail={articleDetail} />
-        <Post articleDetail={articleDetail} recentArticles={recentArticles} />
-      </>
-    </div>
+    <>
+      <HeroDetailes articleDetail={articleDetail} />
+      <Post articleDetail={articleDetail} recentArticles={recentArticles} />
+    </>
   );
 }

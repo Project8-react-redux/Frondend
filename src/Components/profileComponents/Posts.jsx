@@ -5,8 +5,11 @@ import {
   MDBIcon,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthUser } from "react-auth-kit";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchUserData } from "../../Reducers/ProfileReducer";
 import EditPost from "./EditPost";
 import ProfilePostModel from "./ProfilePostModel";
 

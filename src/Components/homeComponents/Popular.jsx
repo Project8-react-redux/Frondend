@@ -10,6 +10,7 @@ import axios from "axios";
 import { logDOM } from "@testing-library/react";
 import { useAuthUser } from "react-auth-kit";
 import { ImArrowUpRight2 } from "react-icons/im";
+import Expextation from "../populareComponents/Expextation";
 const Popular = () => {
   const auth = useAuthUser();
   const { reloadJquery } = useJquery();
@@ -40,6 +41,7 @@ const Popular = () => {
       [e.target.name]: e.target.value,
     }));
   }
+  console.log(expectationData);
   function handelOnSubmit(id) {
     console.log(auth());
     const config = {
@@ -59,7 +61,6 @@ const Popular = () => {
       console.log(response);
     });
   }
-  console.log(expectationData);
   return (
     <>
       {/* start popular section */}
@@ -69,81 +70,19 @@ const Popular = () => {
             <div className="col-lg-8">
               <div className="section-title">
                 <h3>
-                  Popular <span>Post</span>
+                  Expectation <span>Post</span>
                 </h3>
               </div>
-              <div className="row">
-                <div className="col-md-12">
-                  <div>
-                    <>
-                      <div className="ms-content">
-                        <h4>Next Match</h4>
-                        <div className="mc-table ">
-                          <table>
-                            <tbody>
-                              {expectations?.map((expectation) => {
-                                return (
-                                  <>
-                                    <tr key={expectation.id}>
-                                      <td className="left-team">
-                                        <img
-                                          src={expectation.team_2_picture}
-                                          alt=""
-                                        />
-                                        <h6>{expectation.team_2}</h6>
-                                        <div>
-                                          <MDBInput
-                                            label="Number input"
-                                            id="typeNumber"
-                                            type="number"
-                                            name="team_2"
-                                            onChange={handeLOnChange}
-                                          />
-                                        </div>
-                                      </td>
-
-                                      <td className="mt-content">
-                                        <h4>VS</h4>
-                                        <MDBBtn
-                                          color="light"
-                                          rippleColor="dark"
-                                          type="button"
-                                          onClick={() =>
-                                            handelOnSubmit(expectation.id)
-                                          }
-                                        >
-                                          Submit
-                                        </MDBBtn>
-                                      </td>
-                                      <td className="left-team">
-                                        <img
-                                          src={expectation.team_1_picture}
-                                          alt=""
-                                        />
-                                        <h6>{expectation.team_1}</h6>
-                                        <div>
-                                          <MDBInput
-                                            label="Number input"
-                                            id="typeNumber"
-                                            type="number"
-                                            className="me-3"
-                                            name="team_1"
-                                            onChange={handeLOnChange}
-                                          />
-                                        </div>
-                                      </td>
-                                    </tr>
-                                    <hr className="text-dark" />
-                                  </>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </>
-                  </div>
-                </div>
+              <div className="row d-flex mb-4 ">
+                {expectations?.map((expectation) => {
+                  return (
+                    <Expextation
+                      handeLOnChange={handeLOnChange}
+                      handelOnSubmit={handelOnSubmit}
+                      expectation={expectation}
+                    />
+                  );
+                })}
               </div>
             </div>
 

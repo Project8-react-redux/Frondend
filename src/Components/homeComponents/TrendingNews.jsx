@@ -25,7 +25,7 @@ const TrendingNews = () => {
             <i className="fa fa-caret-right" /> Trending News
           </div>
           <div className="news-slider owl-carousel">
-            {articles?.slice(0, 2).map((news) => {
+            {articles?.slice(0, 1).map((news) => {
               return <div className="nt-item ms-3">{news.title}</div>;
             })}
           </div>

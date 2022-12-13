@@ -20,18 +20,8 @@ function HeroDetailes({ articleDetail }) {
                   className="bh-text"
                   style={{ backgroundColor: `#0000009c` }}
                 >
-                  <h2>
-                    England Women 1-0 Argentina Women: Jodie Taylor guarantees
-                    Lionesses
-                  </h2>
-                  <ul>
-                    <li>
-                      <i className="fa fa-calendar" /> May 19, 2019
-                    </li>
-                    <li>
-                      <i className="fa fa-edit" /> 3 Comment
-                    </li>
-                  </ul>
+                  <h2>{articleDetail.title}</h2>
+                  <ul></ul>
                 </div>
               </div>
             </div>

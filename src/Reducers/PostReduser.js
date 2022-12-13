@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //get all Articles
-const allPosts = "http://localhost:8000/api/all-posts";
+const allPosts = "http://localhost:8000/api/allPosts";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   const response = await axios.get(allPosts);
@@ -37,7 +37,7 @@ export const postReducer = createSlice({
 
     [getPosts.fulfilled]: (state, action) => {
       state.status = "Fulfilled";
-      state.articlesData = action.payload;
+      state.postsData = action.payload;
     },
 
     [getPosts.rejected]: (state) => {

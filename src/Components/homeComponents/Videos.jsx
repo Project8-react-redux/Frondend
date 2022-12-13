@@ -29,7 +29,7 @@ const Videos = () => {
   return (
     <>
       {/* start vedios section */}
-      <section className="video-section">
+      <section className="video-section" id="#hotVideo">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

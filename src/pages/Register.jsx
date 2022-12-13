@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -7,7 +7,6 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBIcon,
 } from "mdb-react-ui-kit";
 import { ImGoogle } from "react-icons/im";
 
@@ -20,6 +19,7 @@ import { useSignIn } from "react-auth-kit";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../fierbase";
 import { v4 } from "uuid";
+import $ from "jquery";
 
 function Register() {
   const navigate = useNavigate();
@@ -33,6 +33,9 @@ function Register() {
     password_confirmation: "",
     email: "",
   });
+  useEffect(() => {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }, []);
   const {
     NameValidation,
     emailValidation,
@@ -140,7 +143,7 @@ function Register() {
             className="text-center text-md-start d-flex flex-column justify-content-center"
           >
             <div
-              style={{ backgroundColor: "rgb(85 15 36)", zIndex: 1 }}
+              style={{ backgroundColor: "#1400068f", zIndex: 1 }}
               className="rounded-5 text-center"
             >
               <h3 className="my-5 display-3 fw-bold ls-tight px-3 text-light">
@@ -243,7 +246,7 @@ function Register() {
                     </div>
                   </MDBRow>
 
-                  <MDBBtn className="w-100 mb-2" size="md" style={{backgroundColor:"#8A1538"}}>
+                  <MDBBtn className="w-100 mb-2" size="md" color="dark">
                     sign up
                   </MDBBtn>
 
@@ -251,11 +254,9 @@ function Register() {
                   <MDBBtn
                     className="w-100 mb-2"
                     size="md"
-                    
+                    color="dark"
                     type="button"
-                    style={{backgroundColor:"#8A1538"}} 
-                 
-                                         onClick={(e) => {
+                    onClick={(e) => {
                       // handleRegister(e);
                       //   handleRegister(e);
                     }}

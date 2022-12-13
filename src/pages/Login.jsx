@@ -112,7 +112,7 @@ function Login() {
             className="text-center text-md-start d-flex flex-column justify-content-center"
           >
             <div
-              style={{ backgroundColor: "rgb(85 15 36)", zIndex: 1 }}
+              style={{ backgroundColor: "#00000069", zIndex: 1 }}
               className="rounded-5 text-center"
             >
               <h3 className="my-5 display-3 fw-bold ls-tight px-3 text-light">
@@ -156,7 +156,8 @@ function Login() {
                   <MDBBtn
                     className="w-100 mb-2"
                     size="md"
-                    style={{backgroundColor:"#8A1538"}}                     onClick={handleSubmit}
+                    color="dark"
+                    onClick={handleSubmit}
                   >
                     Login
                   </MDBBtn>
@@ -177,9 +178,9 @@ function Login() {
                 )}
                 <p className="text-center mb-1">or </p>
                 {/* <MDBBtn className="w-100 mb-2" size="md" color="dark"> */}
-                    <LoginGoogle/>
+                <LoginGoogle />
 
-                    {/* <Logout /> */}
+                {/* <Logout /> */}
                 {/* </MDBBtn> */}
                 <div className="text-center mt-4">
                   you don't have account ?

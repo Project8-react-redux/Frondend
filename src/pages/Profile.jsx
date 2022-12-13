@@ -16,13 +16,16 @@ import { useAuthUser } from "react-auth-kit";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "../Reducers/ProfileReducer";
 import { useJquery } from "../hooks/useJquery";
+import $ from "jquery";
 
 function Profile() {
   const auth = useAuthUser();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData.data);
   const { reloadJquery } = useJquery();
-
+  useEffect(() => {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }, []);
   const config = {
     method: "get",
     url: "http://127.0.0.1:8000/api/profile",
@@ -117,7 +120,6 @@ function Profile() {
                 <div className="">
                   <p className="lead fw-normal mb-1">Saved News</p>
                   <div className="mt-3 row">
-                    {console.log(userData.data)}
                     {userData.data.saved_Articles.map((ele) => {
                       return (
                         <div className="col-md-4">
