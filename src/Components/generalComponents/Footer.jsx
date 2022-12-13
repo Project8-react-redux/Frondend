@@ -89,72 +89,23 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <div className="fs-widget">
-                                <h4>Recent News</h4>
-                                <div className="fw-item">
-                                    <h5>
-                                        <Link to={''}>
-                                            England win shows they have the spark to go far at World
-                                            Cup
-                                        </Link>
-                                    </h5>
-                                    <ul>
-                                        <li>
-                                            <i className="fa fa-calendar" /> May 19, 2019
-                                        </li>
-                                        <li>
-                                            <i className="fa fa-edit" /> 3 Comment
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="fw-item">
-                                    <h5>
-                                        <Link to={''}>
-                                            Sri Lanka v Australia: Cricket World Cup 2019 – live!
-                                        </Link>
-                                    </h5>
-                                    <ul>
-                                        <li>
-                                            <i className="fa fa-calendar" /> May 19, 2019
-                                        </li>
-                                        <li>
-                                            <i className="fa fa-edit" /> 3 Comment
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
                 <div className="container">
                     <div className="copyright-option">
                         <div className="row">
                             <div className="col-lg-12">
-                                <div className="co-text">
+                                <div className="co-text text-center">
                                     <p>
-                                        can't be removed. Template is licensed under CC BY 3.0.
-                                        Copyright ©
-                                        All rights reserved | This template is made with
+                                        Copyright © All rights reserved | This Website is made with
                                         <i id="footer-text" className="fa fa-heart" aria-hidden="true" /> by
                                         <Link to={"https://colorlib.com"} target="_blank">
                                             Orange Coding Academy/Group One
                                         </Link>
                                     </p>
                                 </div>
-                                <div className="co-widget">
-                                    <ul>
-                                        <li>
-                                            <Link to={''}>Copyright notification</Link>
-                                        </li>
-                                        <li>
-                                            <Link to={''}>Terms of Use</Link>
-                                        </li>
-                                        <li>
-                                            <Link to={''}>Privacy Policy</Link>
-                                        </li>
-                                    </ul>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>

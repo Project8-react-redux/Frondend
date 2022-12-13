@@ -14,6 +14,7 @@ import Footer from "./Components/generalComponents/Footer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useJquery } from "./hooks/useJquery";
+import Blog from "./pages/Blog";
 
 function App() {
   const { reloadJquery } = useJquery();
@@ -37,6 +38,7 @@ function App() {
 
           <Route path="/Contact" element={<Contact />} />
           <Route path="/NewsDetailes/:id" element={<NewsDetailes />} />
+          <Route path="/Blog" element={<Blog />} />
         </Routes>
         <Footer />
       </BrowserRouter>

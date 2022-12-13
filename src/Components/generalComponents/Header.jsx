@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { AiFillTwitterCircle} from 'react-icons/ai';
 
 
 
@@ -43,7 +44,7 @@ const Header = () => {
                             <i className="fa fa-vimeo" />
                         </Link>
                         <Link to={''}>
-                            <i className="fa fa-twitter" />
+                            <AiFillTwitterCircle />
                         </Link>
                         <Link to={''}>
                             <i className="fa fa-google-plus" />
