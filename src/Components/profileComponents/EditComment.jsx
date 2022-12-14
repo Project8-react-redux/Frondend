@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { getPosts } from "../../Reducers/PostReduser";
+import { fetchUserData } from "../../Reducers/ProfileReducer";
 
 const qs = require("qs");
 
@@ -45,7 +46,15 @@ export default function EditComment({
       content: commentContent.content,
     }),
   };
-
+  const profileConfig = {
+    method: "get",
+    url: "http://127.0.0.1:8000/api/profile",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization: `Bearer ${auth().token}`,
+    },
+  };
   const handleEdit = () => {
     if (commentContent.content == "") return null;
     axios(config)
@@ -68,6 +77,8 @@ export default function EditComment({
         });
         setUpdate(!update);
         dispatch(getPosts());
+        dispatch(fetchUserData(profileConfig));
+
         toggleShow();
       })
       .catch(function (error) {

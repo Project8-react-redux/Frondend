@@ -52,6 +52,7 @@ export default function SinglePost({ postId, toggleShow }) {
         console.log(error);
       });
   };
+
   return (
     <section>
       <MDBContainer className="py-3" style={{ maxWidth: "1000px" }}>

@@ -62,7 +62,7 @@ export const AddPost = () => {
               width="60"
               height="60"
             />
-            <h6 className="fw-bold text-primary mb-1 ">
+            <h6 className="fw-bold mb-1 " style={{ color: "#751f4a" }}>
               {auth().user.firstName + " " + auth().user.lastName}
             </h6>
             <div></div>

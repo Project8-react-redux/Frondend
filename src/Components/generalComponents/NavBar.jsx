@@ -27,7 +27,7 @@ export default function NavBar() {
   const isAuthenticated = useIsAuthenticated();
   const navigate = useNavigate();
   const auth = useAuthUser();
-
+  const isAuth = useIsAuthenticated();
   return (
     <MDBNavbar expand="lg" light sticky style={{ backgroundColor: "#751f4a" }}>
       <MDBContainer fluid>
@@ -52,18 +52,23 @@ export default function NavBar() {
                 </NavLink>
               </MDBNavbarLink>
             </MDBNavbarItem>
+            {isAuth() ? (
+              <MDBNavbarItem>
+                <MDBNavbarLink>
+                  <NavLink to={"/Community"} className="text-white">
+                    Community
+                  </NavLink>
+                </MDBNavbarLink>
+              </MDBNavbarItem>
+            ) : (
+              ""
+            )}
             <MDBNavbarItem>
               <MDBNavbarLink>
                 <NavLink to="/blog" className="text-white">
                   Blog
                 </NavLink>
               </MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              {/* <MDBNavbarLink>
-                <NavLink to="/Community" className="text-white">
-                    Community</NavLink>
-              </MDBNavbarLink> */}
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink>
