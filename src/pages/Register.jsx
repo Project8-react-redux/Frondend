@@ -119,7 +119,7 @@ function Register() {
         className="p-4 position-relative"
         style={{
           backgroundImage:
-            'URL("https://th.bing.com/th/id/OIP.sFFidat51xLQ90mnLkDbHwHaFj?pid=ImgDet&w=640&h=480&rs=1")',
+            'URL("https://digitalhub.fifa.com/transform/0321ae6b-d024-470f-95ae-09a1cd02b3ef/Commercial-Affiliates-Marketing-Workshop-Day-5?io=transform:fill,height:485,width:1023&quality=75")',
           backgroundSize: "cover",
         }}
       >

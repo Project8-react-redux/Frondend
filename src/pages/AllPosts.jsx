@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useJquery } from "../hooks/useJquery";
-import { getApprovedPosts, getPosts } from "../Reducers/PostReduser";
+import { getPosts } from "../Reducers/PostReduser";
 import PostINAll from "./PostINAll";
-import Post from "./Posts";
 import $ from "jquery";
+import { AddPost } from "../Components/profileComponents/AddPost";
 
 export const AllPosts = () => {
   const { reloadJquery } = useJquery();
@@ -27,12 +27,10 @@ export const AllPosts = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 my-4">
+              <AddPost />
               {approved.map((ele) => {
                 return <PostINAll postData={ele} />;
               })}
-              {/* <Post />
-              <Post />
-              <Post /> */}
             </div>
 
             <div className="col-lg-4 my-5">

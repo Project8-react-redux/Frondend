@@ -22,6 +22,7 @@ import { AllPosts } from "./pages/AllPosts";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 import Post from "./Components/NewsDetailes/Post";
+import NavBar from "./Components/generalComponents/NavBar";
 
 function App() {
   const { reloadJquery } = useJquery();
@@ -33,7 +34,8 @@ function App() {
     <>
       {/* <TeamAbout />*/}
       <BrowserRouter>
-        <Header />
+        {/* <Header /> */}
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

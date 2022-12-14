@@ -19,7 +19,7 @@ const LastesNews = () => {
       <section className="latest-section">
         <div className="container p-5">
           <div className="row">
-            <div className="col-lg-8">
+            <div className="col-lg-8" style={{ zIndex: -1 }}>
               <div className="section-title latest-title">
                 <h3>
                   Latest <span>News</span>
