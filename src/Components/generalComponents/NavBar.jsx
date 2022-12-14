@@ -66,7 +66,7 @@ export default function NavBar() {
             <MDBNavbarItem>
               <MDBNavbarLink>
                 <NavLink to="/blog" className="text-white">
-                  Blog
+                  News
                 </NavLink>
               </MDBNavbarLink>
             </MDBNavbarItem>
