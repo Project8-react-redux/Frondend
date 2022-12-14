@@ -95,8 +95,8 @@ export default function NavBar() {
             ) : (
               <MDBNavbarItem className="px-3">
                 <MDBDropdown>
-                  <MDBDropdownToggle tag="a" className="nav-link" role="button">
-                    <img src={auth().user.profileImage} alt="" width="40px" />
+                  <MDBDropdownToggle tag="a" className="nav-link" style={{ backgroundColor: "#751f4a" }} role="button">
+                    <img className="rounded-5" src={auth().user.profileImage} alt="" width="40px" />
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
                     <MDBDropdownItem className="py-2 px-3 ">
