@@ -12,7 +12,7 @@ import logo from "../../asset/logo.png";
 
 export default function Footer() {
   return (
-    <MDBFooter className=" text-white" style={{ backgroundColor: "#8a1538" }}>
+    <MDBFooter className=" text-white" style={{ backgroundColor: "#751f4a" }}>
       <MDBContainer className="p-4">
         <MDBRow>
           <MDBCol lg="6" md="12" className="mb-4 mb-md-0">
