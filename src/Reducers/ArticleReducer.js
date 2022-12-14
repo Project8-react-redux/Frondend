@@ -21,6 +21,7 @@ const initialState = {
   articlesData: [],
   articleDetail: [],
   recentArticles: [],
+  randomArticles: [],
   status: "",
 };
 
@@ -37,6 +38,16 @@ export const ArticlesReducer = createSlice({
       state.recentArticles = state.articlesData.filter((ele) => {
         return ele.article_id != action.payload;
       });
+    },
+    getRandomArticles: (state, action) => {
+      for (let i = 0; i < 3; i++) {
+        // console.log(state.articlesData);
+        let random = Math.round(Math.random() * 100);
+        if (state.randomArticles.indexOf(state.articlesData[random]) !== -1) {
+          continue;
+        }
+        state.randomArticles.push(state.articlesData[random]);
+      }
     },
   },
   extraReducers: {
@@ -56,6 +67,7 @@ export const ArticlesReducer = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getArticle, getRecentArticles } = ArticlesReducer.actions;
+export const { getArticle, getRecentArticles, getRandomArticles } =
+  ArticlesReducer.actions;
 
 export default ArticlesReducer.reducer;

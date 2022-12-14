@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useJquery } from "../hooks/useJquery";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getPosts } from "../Reducers/PostReduser";
+import { getArticles, getRandomArticles } from "../Reducers/ArticleReducer";
+import $ from "jquery";
 function Blog(props) {
   const { reloadJquery } = useJquery();
   useEffect(() => {
@@ -10,11 +13,49 @@ function Blog(props) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  const dispatch = useDispatch();
+  const articles = useSelector((state) => state.articles.articlesData);
+  const [randomArticles, setRandomArticles] = useState([]);
+  useEffect(() => {
+    dispatch(getArticles());
+  }, []);
+  useEffect(() => {
+    if (articles.length > 0) {
+      let temp = [];
+      for (let i = 0; i < 6; i++) {
+        let random = Math.round(Math.random() * articles.length);
+        temp = [...temp, articles[random]];
+
+        console.log(randomArticles);
+      }
+      setRandomArticles([...temp]);
+    }
+  }, [articles]);
+
+  {
+    /***************************************************** */
+  }
+
+  useEffect(() => {
+    reloadJquery();
+  });
+  const approvedPost = useSelector((state) => state.postsData.postsData);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+  console.log(approvedPost);
+  useEffect(() => {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }, []);
+
+  if (articles.length === 0) return "loading...";
   return (
     <>
       <section
         className="breadcrumb-section set-bg"
-        data-setbg="img/breadcrumb-bg.jpg"
+        data-setbg="
+https://images-ext-1.discordapp.net/external/Dry7MK13j0QNWGtXu-mCYf7gx4pQx3VUalbXmDaRDBc/https/miro.medium.com/max/1400/1%2Ad50ssdJTeL6oUalIS8JAYw.jpeg?width=1005&height=670"
       >
         <div className="container">
           <div className="row">
@@ -29,137 +70,60 @@ function Blog(props) {
 
       <section className="blog-section spad">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-8 left-blog-pad">
-              <div
-                className="large-blog set-bg"
-                data-setbg="img/blog/blog-1.jpg"
+          <div className="row justify-content-between">
+            <div className="col-lg-7 left-blog-pad">
+              {/* <div
+                className="large-blog"
+                style={{ backgroundImage: `url(${articles[0].media})` }}
               >
-                <div className="bi-tag">Soccer</div>
+                {console.log(articles[0]?.title)}
                 <div className="bi-text">
                   <h3>
-                    <Link to="/NewsDetailes/30">
-                      England Women 1-0 Argentina Women: Taylor guarantees
-                      Lionesses' path to last 16
+                    <Link to={`/NewsDetailes/${articles[0].article_id}`}>
+                      {articles[0]?.title}
                     </Link>
                   </h3>
                   <ul>
                     <li>
-                      <i className="fa fa-calendar" /> May 19, 2019
-                    </li>
-                    <li>
-                      <i className="fa fa-edit" /> 3 Comment
+                      <i className="fa fa-calendar" />
+                      {articles[0].published_date}
                     </li>
                   </ul>
                 </div>
-              </div>
+             </div>*/}
               <div className="blog-items">
-                <div className="single-item">
-                  <div className="bi-pic">
-                    <img src="img/blog/blog-2.jpg" alt="" />
-                  </div>
-                  <div className="bi-text">
-                    <h4>
-                      <Link to="/NewsDetailes/20">
-                        Jodie Taylor celebrates her first goal of the tournament
-                      </Link>
-                    </h4>
-                    <ul>
-                      <li>
-                        <i className="fa fa-calendar" /> May 19, 2019
-                      </li>
-                      <li>
-                        <i className="fa fa-edit" /> 3 Comment
-                      </li>
-                    </ul>
-                    <p>
-                      It’s that time again when people start thinking about
-                      their New Years Resolutions. Usually they involve, losing
-                      weight, quitting smoking, and joining a gym, just to
-                      mention a few.
-                    </p>
-                  </div>
-                </div>
-                <div className="single-item">
-                  <div className="bi-pic">
-                    <img src="img/blog/blog-3.jpg" alt="" />
-                  </div>
-                  <div className="bi-text">
-                    <h4>
-                      <Link to="/NewsDetailes/10">
-                        Vanina Correa keeps out Nikita Parris' first-half
-                        penalty
-                      </Link>
-                    </h4>
-                    <ul>
-                      <li>
-                        <i className="fa fa-calendar" /> May 19, 2019
-                      </li>
-                      <li>
-                        <i className="fa fa-edit" /> 3 Comment
-                      </li>
-                    </ul>
-                    <p>
-                      It’s that time again when people start thinking about
-                      their New Years Resolutions. Usually they involve, losing
-                      weight, quitting smoking, and joining a gym, just to
-                      mention a few.
-                    </p>
-                  </div>
-                </div>
-                <div className="single-item">
-                  <div className="bi-pic">
-                    <img src="img/blog/blog-4.jpg" alt="" />
-                  </div>
-                  <div className="bi-text">
-                    <h4>
-                      <a href="#">
-                        Derby will demand £4m for Lampard next year
-                      </a>
-                    </h4>
-                    <ul>
-                      <li>
-                        <i className="fa fa-calendar" /> May 19, 2019
-                      </li>
-                      <li>
-                        <i className="fa fa-edit" /> 3 Comment
-                      </li>
-                    </ul>
-                    <p>
-                      It’s that time again when people start thinking about
-                      their New Years Resolutions. Usually they involve, losing
-                      weight, quitting smoking, and joining a gym, just to
-                      mention a few.
-                    </p>
-                  </div>
-                </div>
-                <div className="single-item">
-                  <div className="bi-pic">
-                    <img src="img/blog/blog-5.jpg" alt="" />
-                  </div>
-                  <div className="bi-text">
-                    <h4>
-                      <a href="#">
-                        Virgil van Dijk says Liverpool are hungry for more
-                        success
-                      </a>
-                    </h4>
-                    <ul>
-                      <li>
-                        <i className="fa fa-calendar" /> May 19, 2019
-                      </li>
-                      <li>
-                        <i className="fa fa-edit" /> 3 Comment
-                      </li>
-                    </ul>
-                    <p>
-                      It’s that time again when people start thinking about
-                      their New Years Resolutions. Usually they involve, losing
-                      weight, quitting smoking, and joining a gym, just to
-                      mention a few.
-                    </p>
-                  </div>
-                </div>
+                {articles.slice(1, 5).map((article) => {
+                  return (
+                    <div
+                      className="single-item "
+                      style={{ float: "left", marginRight: "30px" }}
+                    >
+                      <img
+                        style={{ borderRadius: " 2px", minWidth: "100%" }}
+                        src={article.media}
+                        alt=""
+                      />
+
+                      <div
+                        className="bi-text"
+                        style={{ overFlow: "hidden", paddingTop: "10px" }}
+                      >
+                        <h4>
+                          <Link to={`/NewsDetailes/${article.article_id}`}>
+                            {article.title}
+                          </Link>
+                        </h4>
+                        <ul>
+                          <li>
+                            <i className="fa fa-calendar" />
+                            {article.published_date}
+                          </li>
+                        </ul>
+                        <p>{article.excerpt}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
               <div className="more-blog">
                 <a href="#">
@@ -174,80 +138,31 @@ function Blog(props) {
               <div className="blog-sidebar">
                 <div className="bs-recent">
                   <div className="section-title sidebar-title">
-                    <h5>Recent Post</h5>
+                    <h5>Trending News</h5>
                   </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-1.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <a href="#">How To Quit Smoking Using Zyban</a>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-2.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <a href="#">Decorate For Less With Art Posters</a>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-3.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <a href="#">Home Business Advertising Ideas</a>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="news-item">
-                    <div className="ni-pic">
-                      <img src="img/news/ln-4.jpg" alt="" />
-                    </div>
-                    <div className="ni-text">
-                      <h5>
-                        <a href="#">Lasik Doesn T Stop Your Eyes From Aging</a>
-                      </h5>
-                      <ul>
-                        <li>
-                          <i className="fa fa-calendar" /> May 19, 2019
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                  {randomArticles.slice(0, 5).map((article) => {
+                    console.log(article);
+                    return (
+                      <div className="news-item">
+                        <div className="ni-pic">
+                          <img src={article.media} alt="" />
+                        </div>
+                        <div className="ni-text">
+                          <h5>
+                            <Link to={`/NewsDetailes/${article.article_id}`}>
+                              {article.title}
+                            </Link>
+                          </h5>
+                          <ul>
+                            <li>
+                              <i className="fa fa-calendar" />
+                              {article.published_date}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
