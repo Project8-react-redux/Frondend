@@ -36,7 +36,9 @@ const LastesNews = () => {
                     </div>
                     <div className="ni-text">
                       <h4>
-                        <Link to={""}>{articles[0]?.title}</Link>
+                        <Link to={`/NewsDetailes/${articles.article_id}`}>
+                          {articles[0]?.title}
+                        </Link>
                       </h4>
                       <ul>
                         <li>
