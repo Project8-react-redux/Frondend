@@ -6,10 +6,7 @@ import {
   MDBModalHeader,
   MDBModalBody,
 } from "mdb-react-ui-kit";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import SinglePost from "../../pages/Posts";
-import { fetchUserData } from "../../Reducers/ProfileReducer";
 
 export default function ProfilePostModel({
   toggleShow,

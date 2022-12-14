@@ -16,7 +16,10 @@ const RecentMatches = ({ previouMatches }) => {
                   previousmatch.map((match) => {
                     return (
                       <>
-                        <tr key={match.match_id}>
+                        <tr
+                          key={match.match_id}
+                          style={{ backgroundColor: "#751f4a78" }}
+                        >
                           <td className="left-team">
                             <img src={match.team_home_badge} alt="" />
                             <h6>{match.match_hometeam_name}</h6>

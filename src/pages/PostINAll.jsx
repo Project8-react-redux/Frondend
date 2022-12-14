@@ -1,143 +1,246 @@
 import React, { useEffect, useState } from "react";
 import {
-  MDBAccordion,
-  MDBAccordionItem,
   MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardFooter,
   MDBCardImage,
   MDBCol,
-  MDBContainer,
+  MDBIcon,
+  MDBPopover,
+  MDBPopoverBody,
   MDBRow,
   MDBTextArea,
-  MDBTypography,
 } from "mdb-react-ui-kit";
 import { useAuthUser } from "react-auth-kit";
 import { useJquery } from "../hooks/useJquery";
 import { useDispatch } from "react-redux";
-import { fetchUserData } from "../Reducers/ProfileReducer";
+import axios from "axios";
+import { getPosts } from "../Reducers/PostReduser";
+import EditComment from "../Components/profileComponents/EditComment";
 
 export default function PostINAll({ postData }) {
   const { reloadJquery } = useJquery();
+  const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(2);
+  const [optSmModal, setOptSmModal] = useState(false);
+  const toggleShow = () => setOptSmModal(!optSmModal);
 
   useEffect(() => {
     reloadJquery();
   });
-  const auth = useAuthUser();
   const [comment, setComment] = useState({
     content: "",
     post_id: postData.postId,
   });
   const dispatch = useDispatch();
+  const auth = useAuthUser();
 
-  const config = {
-    method: "get",
-    url: "http://127.0.0.1:8000/api/profile",
+  const commentConfig = {
+    method: "post",
+    url: "http://127.0.0.1:8000/api/comment",
     headers: {
       Accept: "application/vnd.api+json",
       "Content-Type": "application/vnd.api+json",
       Authorization: `Bearer ${auth().token}`,
     },
+    data: comment,
   };
-  useEffect(() => {
-    dispatch(fetchUserData(config));
-  }, []);
+  const handleComment = () => {
+    if (comment.content === "") return null;
+    axios(commentConfig)
+      .then(function (res) {
+        console.log(res.data);
+        dispatch(getPosts());
+        setLoading(!loading);
+        setComment((pervs) => ({
+          ...pervs,
+          content: "",
+        }));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const handleDelete = (id) => {
+    const config = {
+      method: "delete",
+      url: `http://127.0.0.1:8000/api/comment/${id}`,
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        Authorization: `Bearer ${auth().token}`,
+      },
+    };
+    axios(config).then((resp) => {
+      console.log(resp);
+      dispatch(getPosts());
+      setLoading(!loading);
+    });
+  };
   return (
     <section>
-      <MDBContainer className="py-3" style={{ maxWidth: "1000px" }}>
-        <MDBRow className="justify-content-center">
-          <MDBCol md="12" lg="12" xl="12">
-            <MDBCard>
-              <MDBCardBody className="py-0 pt-3">
-                <div className="d-flex flex-start align-items-center">
-                  <MDBCardImage
-                    className="rounded-circle shadow-1-strong me-3"
-                    src={postData.post_Owner_photo}
-                    alt="avatar"
-                    width="60"
-                    height="60"
-                  />
-                  <div>
-                    <h6 className="fw-bold text-primary mb-1">
-                      {postData.postOwner}
-                    </h6>
-                    <p className="text-muted small mb-0">
-                      {postData.created_at.split("T")[0]} at{" "}
-                      {postData.created_at.split("T")[1].slice(0, 5)}
-                    </p>
-                  </div>
+      <MDBRow className="justify-content-center py-3 ">
+        <MDBCol>
+          <MDBCard>
+            <MDBCardBody className="py-0 pt-3 px-0">
+              <div className="d-flex flex-start align-items-center px-3">
+                <MDBCardImage
+                  className="rounded-circle shadow-1-strong me-3"
+                  src={postData.post_Owner_photo}
+                  alt="avatar"
+                  width="60"
+                  height="60"
+                />
+                <div>
+                  <h6 className="fw-bold text-primary mb-1 ">
+                    {postData.postOwner}
+                  </h6>
+                  <p className="text-muted small mb-0">
+                    {postData.created_at.split("T")[0]} at{" "}
+                    {postData.created_at.split("T")[1].slice(0, 5)}
+                  </p>
                 </div>
+              </div>
 
-                <p className="mt-3 mb-4 pb-2">{postData.content}</p>
+              <p className="mt-3 mb-4 pb-2  px-4">{postData.content}</p>
 
-                <MDBAccordion flush className="p-0">
-                  <MDBAccordionItem collapseId={1} headerTitle="Show Comments">
-                    <MDBCardBody className="p-0 py-2">
-                      {postData.postComments.map((comment) => {
-                        return (
-                          <div className="d-flex flex-start py-4">
-                            <MDBCardImage
-                              className="rounded-circle shadow-1-strong me-3"
-                              src={comment.comment_Owner_photo}
-                              alt="avatar"
-                              width="60"
-                              height="60"
-                            />
-                            <div>
-                              <MDBTypography tag="h6" className="fw-bold mb-1">
-                                {comment.comment_Owner}
-                              </MDBTypography>
-                              <div className="d-flex align-items-center mb-3">
-                                <p className="mb-0 small text-muted">
-                                  {comment.updated_at.split("T")[0]} at{" "}
-                                  {comment.updated_at.split("T")[1].slice(0, 5)}
-                                </p>
+              <MDBCardBody
+                className="p-0 py-2 rounded  px-4"
+                style={{ background: "#f9f9f9" }}
+              >
+                {postData.postComments.length > count ? (
+                  <p
+                    className="text-end me-3"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setCount(5 + count);
+                    }}
+                  >
+                    View More Comments
+                  </p>
+                ) : null}
+
+                {postData.postComments.length != 0
+                  ? postData.postComments.slice(-count).map((comment) => {
+                      return (
+                        <>
+                          <div className="d-flex flex-column ">
+                            <div className="d-flex flex-row align-items-center justify-content-between mb-3">
+                              <div className="d-flex ">
+                                <MDBCardImage
+                                  src={comment.comment_Owner_photo}
+                                  alt="avatar"
+                                  width="45"
+                                  height="45"
+                                  className="rounded"
+                                />
+                                <span className="h6 mb-0 ms-2">
+                                  {comment.comment_Owner}
+                                  <p className="mb-0 small text-muted">
+                                    {comment.updated_at.split("T")[0]} at{" "}
+                                    {comment.updated_at
+                                      .split("T")[1]
+                                      .slice(0, 5)}
+                                  </p>
+                                </span>
                               </div>
-                              <p className="mb-0 text-dark">
-                                {comment.comment_content}
-                              </p>
+                              {comment.comment_Owner_id ==
+                              auth().user.user_id ? (
+                                <div>
+                                  <MDBPopover
+                                    size="sm"
+                                    color="danger"
+                                    btnChildren={
+                                      <MDBIcon fas icon="trash-alt" />
+                                    }
+                                    dismiss
+                                  >
+                                    <MDBPopoverBody>
+                                      <h6>Are you sure?</h6>
+                                      <p>You won't be able to revert this!</p>
+                                      <MDBBtn
+                                        color="danger"
+                                        onClick={() => {
+                                          handleDelete(comment.comment_id);
+                                        }}
+                                      >
+                                        delete
+                                      </MDBBtn>
+                                    </MDBPopoverBody>
+                                  </MDBPopover>
+
+                                  <MDBIcon
+                                    fas
+                                    icon="edit"
+                                    className="ms-3 "
+                                    style={{ fontSize: 18, cursor: "pointer" }}
+                                    onClick={toggleShow}
+                                  />
+                                  <EditComment
+                                    setBasicModal={setOptSmModal}
+                                    basicModal={optSmModal}
+                                    toggleShow={toggleShow}
+                                    comment={comment}
+                                  />
+                                </div>
+                              ) : (
+                                <div></div>
+                              )}
+                            </div>
+                            <div
+                              className="d-flex flex-row align-items-center mx-5 text-muted p-2 rounded-5"
+                              style={{ background: "#e9e9e9" }}
+                            >
+                              {comment.comment_content}
                             </div>
                           </div>
-                        );
-                      })}
-                    </MDBCardBody>
-                  </MDBAccordionItem>
-                </MDBAccordion>
+                          <hr className="w-75 mx-auto " />
+                        </>
+                      );
+                    })
+                  : null}
               </MDBCardBody>
-              <MDBCardFooter
-                className="py-3 border-0"
-                style={{ backgroundColor: "#f8f9fa" }}
-              >
-                <div className="d-flex flex-start w-100">
-                  <MDBCardImage
-                    className="rounded-circle shadow-1-strong me-3"
-                    src={auth().user.profileImage}
-                    alt="avatar"
-                    width="40"
-                    height="40"
-                  />
-                  <MDBTextArea
-                    label="Message"
-                    id="textAreaExample"
-                    rows={2}
-                    style={{ backgroundColor: "#fff" }}
-                    wrapperClass="w-100"
-                    onChange={(e) => {
-                      setComment(e.target.value);
-                    }}
-                  />
-                  <div className="d-flex align-items-center mx-2">
-                    <MDBBtn>
-                      <i class="fas fa-paper-plane"></i>
-                    </MDBBtn>
-                  </div>
+            </MDBCardBody>
+            <MDBCardFooter
+              className="py-3 border-0"
+              style={{ backgroundColor: "#f8f9fa" }}
+            >
+              <div className="d-flex flex-start w-100">
+                <MDBCardImage
+                  className="rounded-circle shadow-1-strong me-3"
+                  src={auth().user.profileImage}
+                  alt="avatar"
+                  width="40"
+                  height="40"
+                />
+                <MDBTextArea
+                  label="Message"
+                  id="textAreaExample"
+                  value={comment.content}
+                  rows={2}
+                  style={{ backgroundColor: "#fff" }}
+                  wrapperClass="w-100"
+                  onChange={(e) => {
+                    setComment((pervs) => ({
+                      ...pervs,
+                      content: e.target.value,
+                    }));
+                  }}
+                />
+                <div className="d-flex align-items-center mx-2">
+                  <MDBBtn
+                    onClick={handleComment}
+                    style={{ backgroundColor: "#751f4a" }}
+                  >
+                    <i class="fas fa-paper-plane"></i>
+                  </MDBBtn>
                 </div>
-              </MDBCardFooter>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+              </div>
+            </MDBCardFooter>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
     </section>
   );
 }

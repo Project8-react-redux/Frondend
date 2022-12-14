@@ -12,57 +12,42 @@ import {
   MDBTextArea,
 } from "mdb-react-ui-kit";
 import { useAuthUser } from "react-auth-kit";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { fetchUserData } from "../../Reducers/ProfileReducer";
+import { getPosts } from "../../Reducers/PostReduser";
 
 const qs = require("qs");
 
-export default function EditPost({
+export default function EditComment({
   basicModal,
   setBasicModal,
   toggleShow,
-  postId,
+  comment,
 }) {
   const auth = useAuthUser();
   const dispatch = useDispatch();
   const [update, setUpdate] = useState(false);
-  const userPosts = useSelector(
-    (state) =>
-      state.userData.data.data.User_posts.filter((ele) => {
-        return ele.postId === postId;
-      })[0]
-  );
-  const [postContent, setPostContent] = useState({
-    content: userPosts.content,
+
+  const [commentContent, setCommentContent] = useState({
+    content: comment.comment_content,
   });
-  const profileConfigs = {
-    method: "get",
-    url: "http://127.0.0.1:8000/api/profile",
-    headers: {
-      Accept: "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-      Authorization: `Bearer ${auth().token}`,
-    },
-  };
+
   const config = {
     method: "put",
-    url: `http://127.0.0.1:8000/api/post/${userPosts.postId}`,
+    url: `http://127.0.0.1:8000/api/comment/${comment.comment_id}`,
     headers: {
       Accept: "application/vnd.api+json",
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Bearer ${auth().token}`,
     },
     data: qs.stringify({
-      content: postContent.content,
+      content: commentContent.content,
     }),
   };
-  useEffect(() => {
-    dispatch(fetchUserData(profileConfigs));
-  }, [update]);
+
   const handleEdit = () => {
-    if (postContent.content == "") return null;
+    if (commentContent.content == "") return null;
     axios(config)
       .then(function (res) {
         console.log(res.data);
@@ -82,6 +67,7 @@ export default function EditPost({
           title: res.data.message,
         });
         setUpdate(!update);
+        dispatch(getPosts());
         toggleShow();
       })
       .catch(function (error) {
@@ -117,9 +103,9 @@ export default function EditPost({
                   rows={6}
                   style={{ backgroundColor: "#fff" }}
                   wrapperClass="w-100"
-                  value={postContent.content}
+                  value={commentContent.content}
                   onChange={(e) => {
-                    setPostContent((pervs) => ({
+                    setCommentContent((pervs) => ({
                       ...pervs,
                       content: e.target.value,
                     }));
@@ -132,16 +118,19 @@ export default function EditPost({
               <MDBBtn
                 color="danger"
                 onClick={() => {
-                  setPostContent((pervs) => ({
+                  setCommentContent((pervs) => ({
                     ...pervs,
-                    content: userPosts.content,
+                    content: comment.comment_content,
                   }));
                   toggleShow();
                 }}
               >
                 Close
               </MDBBtn>
-              <MDBBtn onClick={handleEdit}>
+              <MDBBtn
+                onClick={handleEdit}
+                style={{ backgroundColor: "#751f4a" }}
+              >
                 {" "}
                 <i class="fas fa-share-square"></i>Save changes
               </MDBBtn>
