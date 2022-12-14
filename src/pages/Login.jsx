@@ -89,7 +89,7 @@ function Login() {
         className="p-4 position-relative "
         style={{
           backgroundImage:
-            'URL("https://th.bing.com/th/id/OIP.sFFidat51xLQ90mnLkDbHwHaFj?pid=ImgDet&w=640&h=480&rs=1")',
+            'URL("https://digitalhub.fifa.com/transform/29f0eb54-ee32-4c22-a829-52ea02a6ffae/qvbxqr5uir54g7nxgsea-jpg")',
           backgroundSize: "cover",
         }}
       >

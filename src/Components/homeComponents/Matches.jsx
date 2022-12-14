@@ -12,6 +12,7 @@ import "./matches.css";
 import Spinner from "../generalComponents/spinner";
 import { Link } from "react-router-dom";
 import { Leagues } from "../../Reducers/MatchesReducer";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 const Matches = () => {
   //dipatch all countries || read all countries===========================================================
@@ -77,6 +78,7 @@ const Matches = () => {
 
   // set the league id to the date and league state
   function handeLOnChange(e) {
+    // myFunction();
     setDateAndLeague((prevs) => ({
       ...prevs,
       [e.target.name]: e.target.value,
@@ -107,7 +109,6 @@ const Matches = () => {
       <section
         className="match-section set-bg"
         data-setbg="img/match/match-bg.jpg"
-        style={{ filter: "drop-shadow(-90px -50px 18px black)" }}
       >
         <div className="container">
           {previouMatches !== null ? (
@@ -118,12 +119,20 @@ const Matches = () => {
           ) : (
             ""
           )}
-          <div className="select-div d-flex align-items-center flex-wrap gap-2 ">
+          <div
+            className="select-div d-flex align-items-center flex-wrap gap-2 "
+            style={{ backgroundColor: "transparent" }}
+          >
             <div className="dropdown">
-              <button onClick={() => myFunction()} className="dropbtn">
+              <MDBBtn
+                onClick={() => myFunction()}
+                className="dropbtn"
+                color="dark"
+                style={{ backgroundColor: "#751f4a" }}
+              >
                 Select City
-              </button>
-              <div id="myDropdown" className="pointer dropdown-content">
+              </MDBBtn>
+              <div id="myDropdown" className="pointer dropdown-content ">
                 <input
                   className="pointer"
                   type="text"
@@ -153,7 +162,7 @@ const Matches = () => {
 
             <div className="col-md-4 col">
               <select
-                className="col-md-8"
+                className="col-md-8 form-control"
                 id="leagues"
                 name="leagueId"
                 onChange={handeLOnChange}
@@ -161,7 +170,7 @@ const Matches = () => {
                 <option>--Select a league--</option>
                 {filterdLeagues.map((league) => {
                   return (
-                    <option value={league.league_id}>
+                    <option value={league.league_id} onClick={myFunction}>
                       {league.league_name}
                     </option>
                   );
@@ -182,7 +191,7 @@ const Matches = () => {
     document.getElementById("myDropdown").classList.toggle("show");
   }
   function filterFunction() {
-    var input, filter, a, i;
+    let input, filter, a, i;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
     let div = document.getElementById("myDropdown");

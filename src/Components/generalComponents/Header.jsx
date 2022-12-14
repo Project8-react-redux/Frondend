@@ -5,7 +5,6 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import { AiFillLinkedin } from "react-icons/ai";
 import { useAuthUser, useSignOut } from "react-auth-kit";
 import { useIsAuthenticated } from "react-auth-kit";
-import { MDBCardImage } from "mdb-react-ui-kit";
 
 const Header = () => {
   const isAuth = useIsAuthenticated();

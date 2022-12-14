@@ -17,7 +17,7 @@ export default function Expextation({
   return (
     <>
       <MDBCol md="6" lg="5" className="mt-5">
-        <MDBCard style={{ borderRadius: "15px", backgroundColor: "#8A1538" }}>
+        <MDBCard style={{ borderRadius: "15px", backgroundColor: "#751f4a" }}>
           <MDBCardBody className="p-4 text-black">
             <div>
               <MDBTypography
