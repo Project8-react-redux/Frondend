@@ -54,28 +54,27 @@ export default function NavBar() {
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink>
-                <NavLink to="/shops" className="text-white">
-                  Shops
+                <NavLink to="/blog" className="text-white">
+                  Blog
                 </NavLink>
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink>
-                <NavLink to="/joinUs" className="text-white">
-                  Join Us
-                </NavLink>
-              </MDBNavbarLink>
+              {/* <MDBNavbarLink>
+                <NavLink to="/Community" className="text-white">
+                    Community</NavLink>
+              </MDBNavbarLink> */}
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink>
-                <NavLink to="/about" className="text-white">
+                <NavLink to="/About" className="text-white">
                   About
                 </NavLink>
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink>
-                <NavLink to="/contact" className="text-white">
+                <NavLink to="/Contact" className="text-white">
                   Contact
                 </NavLink>
               </MDBNavbarLink>

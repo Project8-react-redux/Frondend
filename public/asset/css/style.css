@@ -139,7 +139,7 @@ ol {
 	bottom: 0;
 	height: 3px;
 	width: 70px;
-	background: #8A1538;
+	background: #751f4a;
 	content: "";
 	z-index: 1;
 }
@@ -191,6 +191,7 @@ ol {
 .text-white li,
 .text-white a {
 	color: #fff;
+	padding-left: 10px;
 }
 
 /* buttons */
@@ -198,11 +199,13 @@ ol {
 .primary-btn {
 	font-size: 16px;
 	color: #ffffff;
-	background: #8A1538;
+	background: #751f4a;
 	font-weight: 500;
 	letter-spacing: 1px;
 	display: inline-block;
 	padding: 14px 36px 12px;
+	border-radius: 7px;
+
 }
 
 /* Preloder */
@@ -382,7 +385,7 @@ ol {
 }
 
 .header__nav {
-	background: #8A1538;
+	background: #751f4a;
 }
 
 .header__nav .logo {
@@ -439,7 +442,7 @@ ol {
 }
 
 .header__nav .nav-menu .main-menu li .dropdown li a:hover {
-	color: #8A1538;
+	color: #751f4a;
 }
 
 .header__nav .nav-menu .main-menu li .dropdown li a:after {
@@ -543,14 +546,14 @@ ol {
 .trending-news-section {
 	background: #151618;
 	position: relative;
-	padding: 18px 0;
+	padding: 30px 0;
 }
 
 .trending-news-section .tn-title {
 	font-size: 20px;
 	color: #ffffff;
 	font-weight: 500;
-	background: #8A1538;
+	background: #751f4a;
 	text-align: right;
 	padding-right: 75px;
 	padding-top: 14px;
@@ -701,7 +704,7 @@ ol {
 
 .soccer-item .si-tag {
 	color: #ffffff;
-	background: #8A1538;
+	background: #751f4a;
 	font-size: 10px;
 	font-weight: 500;
 	display: inline-block;
@@ -791,7 +794,7 @@ ol {
 }
 
 .section-title.latest-title ul li:hover {
-	background: #8A1538;
+	background: #751f4a;
 	color: #ffffff;
 }
 
@@ -808,7 +811,7 @@ ol {
 
 .news-item.left-news .ni-pic .ni-tag {
 	color: #ffffff;
-	background: #8A1538;
+	background: #751f4a;
 	font-size: 10px;
 	font-weight: 500;
 	display: inline-block;
@@ -880,7 +883,7 @@ ol {
 }
 
 .news-item .ni-text ul li i {
-	color: #8A1538;
+	color: #751f4a;
 }
 
 .news-item .ni-text ul li:after {
@@ -1003,9 +1006,9 @@ ol {
 }
 
 .video-slider.owl-carousel .owl-nav button:hover {
-	background: #8A1538;
+	background: #751f4a;
 	color: #ffffff;
-	border-color: #8A1538;
+	border-color: #751f4a;
 }
 
 .video-item {
@@ -1069,7 +1072,7 @@ ol {
 
 .news-item.popular-item .ni-tag {
 	color: #ffffff;
-	background: #8A1538;
+	background: #751f4a;
 	font-size: 10px;
 	font-weight: 500;
 	display: inline-block;
@@ -1249,7 +1252,7 @@ ol {
 
 .fs-logo ul li i {
 	font-size: 16px;
-	color: #8A1538;
+	color: #751f4a;
 	margin-right: 10px;
 	position: absolute;
 	left: 0;
@@ -1277,8 +1280,8 @@ ol {
 }
 
 .fs-logo .fs-social a:hover {
-	background: #8A1538;
-	border-color: #8A1538;
+	background: #751f4a;
+	border-color: #751f4a;
 	color: #ffffff;
 }
 
@@ -1313,7 +1316,7 @@ ol {
 }
 
 .fs-widget .fw-links li a:hover {
-	color: #8A1538;
+	color: #751f4a;
 }
 
 .fs-widget .fw-item {
@@ -1340,7 +1343,7 @@ ol {
 }
 
 .fs-widget .fw-item ul li i {
-	color: #8A1538;
+	color: #751f4a;
 }
 
 .fs-widget .fw-item ul li:after {
@@ -1431,7 +1434,7 @@ ol {
 	font-size: 22px;
 	color: #ffffff;
 	font-weight: 500;
-	background: #8A1538;
+	background: #751f4a;
 	text-align: center;
 	padding: 12px 0 14px;
 	margin-bottom: 30px;
@@ -1505,7 +1508,7 @@ ol {
 }
 
 .schedule-text .st-table table tbody tr td.st-option h4 {
-	color: #8A1538;
+	color: #751f4a;
 	text-transform: uppercase;
 	font-weight: 700;
 	margin-top: 14px;
@@ -1592,7 +1595,7 @@ ol {
 .large-blog .bi-tag {
 	font-size: 12px;
 	color: #ffffff;
-	background: #8A1538;
+	background: #751f4a;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	display: inline-block;
@@ -1695,7 +1698,7 @@ ol {
 }
 
 .blog-items .single-item .bi-text ul li i {
-	color: #8A1538;
+	color: #751f4a;
 }
 
 .blog-items .single-item .bi-text ul li:after {
@@ -1738,9 +1741,9 @@ ol {
 }
 
 .more-blog a:hover {
-	background: #8A1538;
+	background: #751f4a;
 	color: #ffffff;
-	border-color: #8A1538;
+	border-color: #751f4a;
 }
 
 .blog-sidebar .bs-categories {
@@ -1818,7 +1821,7 @@ ol {
 }
 
 .blog-hero-section .bh-text ul li i {
-	color: #8A1538;
+	color: #751f4a;
 }
 
 .blog-hero-section .bh-text ul li:after {
@@ -1958,7 +1961,7 @@ ol {
 
 .bd-text .comment-option .single-comment-item .sc-text span {
 	font-size: 12px;
-	color: #8A1538;
+	color: #751f4a;
 }
 
 .bd-text .comment-option .single-comment-item .sc-text h5 {
@@ -1977,7 +1980,7 @@ ol {
 	display: inline-block;
 	font-size: 12px;
 	text-transform: uppercase;
-	color: #8A1538;
+	color: #751f4a;
 	border: 1px solid #e5e5e5;
 	border-radius: 2px;
 	padding: 4px 26px;
@@ -1994,8 +1997,8 @@ ol {
 }
 
 .bd-text .comment-option .single-comment-item .sc-text .comment-btn:hover {
-	background: #8A1538;
-	border-color: #8A1538;
+	background: #751f4a;
+	border-color: #751f4a;
 	color: #ffffff;
 }
 
@@ -2076,7 +2079,7 @@ ol {
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 500;
-	background: #8A1538;
+	background: #751f4a;
 	border: none;
 	padding: 12px 34px 10px 40px;
 	border-radius: 2px;
@@ -2133,7 +2136,7 @@ ol {
 }
 
 .contact-form form .group-in input:focus {
-	border-color: #8A1538;
+	border-color: #751f4a;
 }
 
 .contact-form form .group-in textarea {
@@ -2154,7 +2157,7 @@ ol {
 }
 
 .contact-form form .group-in textarea:focus {
-	border-color: #8A1538;
+	border-color: #751f4a;
 }
 
 .contact-form form button {
@@ -2162,10 +2165,12 @@ ol {
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 500;
-	background: #8A1538;
+	background: #751f4a;
 	border: none;
 	padding: 12px 34px 10px 40px;
 	letter-spacing: 1px;
+	border-radius: 5px;
+
 }
 
 .contact-info h2 {
@@ -2479,12 +2484,12 @@ ol {
 	}
 	.offcanvas-menu-wrapper .slicknav_nav a:hover {
 		border-radius: 0;
-		background: #8A1538;
+		background: #751f4a;
 		color: #ffffff;
 	}
 	.offcanvas-menu-wrapper .slicknav_nav .slicknav_row:hover {
 		border-radius: 0;
-		background: #8A1538;
+		background: #751f4a;
 		color: #ffffff;
 	}
 	.offcanvas-menu-wrapper .slicknav_nav .slicknav_row,

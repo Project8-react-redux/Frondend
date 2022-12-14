@@ -67,27 +67,17 @@ export const ContactForm = () => {
               <div className="contact-info">
                 <h2>Contact Info</h2>
                 <p>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout.
-                  The point of using Lorem Ipsum is that it has a distribution
-                  of letters.
+                We’d love to hear from you
+Whether you’re curious about Matches <br></br>or even press—we’re ready to answer any and all questions.
                 </p>
                 <div className="ci-address">
-                  <h5>New York Office</h5>
+                  <h5>Amman , Jordan</h5>
                   <ul>
-                    <li>T8/480 Collins St, Melbourne VIC 3000, New York</li>
-                    <li>1-234-567-89011</li>
-                    <li>info.colorlib@gmail.com </li>
+                    <li><a  href="tel:+962778084901" style={{color:"black"}}>+962778084901</a></li>
+                    <li><a  href="mailto:hayya@gmail.com" style={{color:"black"}}>hayya@gmail.com </a></li>
                   </ul>
                 </div>
-                <div className="ci-address">
-                  <h5>Australia Office</h5>
-                  <ul>
-                    <li>Forrest Ray, 191-103 Integer Rd, Corona Australia</li>
-                    <li>1-234-567-89011</li>
-                    <li>info.colorlib@gmail.com </li>
-                  </ul>
-                </div>
+              
               </div>
             </div>
           </div>

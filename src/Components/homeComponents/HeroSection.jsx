@@ -22,7 +22,8 @@ const HeroSection = () => {
                                                 <h2>Morocco VS . France </h2>
                                                 <p> 
                                                 Start with us on the predictions journey and follow the latest match news with others                                                </p>
-                                                <Link className="primary-btn" to={'register'}>
+                                                <Link className="primary-btn" style={{ backgroundColor: "#751f4a" }}
+ to={'register'}>
                                                     Start Now
                                                 </Link>
                                             </div>
