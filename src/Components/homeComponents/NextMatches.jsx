@@ -17,25 +17,30 @@ const NextMatches = ({ nextMatches }) => {
                     console.log(match.match_id);
                     return (
                       <>
+
+                      <tr>
+                        {/* <td>
+                      <div className="mc-op d-flex col-md-12 ">
+                              <p>{match.match_hometeam_name}</p> Vs{" "}
+                              <p>{match.match_awayteam_name}</p>
+                            </div>
+                            </td> */}
+                      </tr>
                         <tr
                           key={match.match_id}
-                          style={{ backgroundColor: "#751f4a78" }}
-                        >
+                          style={{ backgroundColor: "#751f4a78" }}>
                           <td className="left-team">
                             <img src={match.team_home_badge} alt="" />
                             <h6>{match.match_hometeam_name}</h6>
                           </td>
                           <td className="mt-content">
-                            <div className="mc-op">
-                              {match.match_hometeam_name} Vs{" "}
-                              {match.match_awayteam_name}
-                            </div>
+                            
                             <h4>VS</h4>
                             <div className="mc-op">{match.match_date}</div>
                           </td>
                           <td className="right-team">
                             <img src={match.team_away_badge} alt="" />
-                            <h6>{match.match_awayteam_name}</h6>
+                            <h6 className="">{match.match_awayteam_name}</h6>
                           </td>
                         </tr>
                         <hr className="text-dark" />

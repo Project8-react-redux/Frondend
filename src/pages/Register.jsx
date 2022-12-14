@@ -9,6 +9,8 @@ import {
   MDBInput,
 } from "mdb-react-ui-kit";
 import { ImGoogle } from "react-icons/im";
+import LoginGoogle from "../Components/Google/login";
+
 
 // import logo from "../asset/BrandFiles/3rood-low-resolution-logo-color-on-transparent-background.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -251,18 +253,8 @@ function Register() {
                   </MDBBtn>
 
                   <p className="text-center mb-1">or </p>
-                  <MDBBtn
-                    className="w-100 mb-2"
-                    size="md"
-                    color="dark"
-                    type="button"
-                    onClick={(e) => {
-                      // handleRegister(e);
-                      //   handleRegister(e);
-                    }}
-                  >
-                    sign up with <ImGoogle />
-                  </MDBBtn>
+                  <LoginGoogle />
+
                   <div className="text-center mt-4">
                     do you have account ?
                     <Link className="text-dark" to="/login">
