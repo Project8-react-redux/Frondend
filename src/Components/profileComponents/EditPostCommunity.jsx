@@ -12,43 +12,29 @@ import {
   MDBTextArea,
 } from "mdb-react-ui-kit";
 import { useAuthUser } from "react-auth-kit";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, r } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { fetchUserData } from "../../Reducers/ProfileReducer";
 
 const qs = require("qs");
 
-export default function EditPost({
+export default function EditPostCommunity({
   basicModal,
   setBasicModal,
   toggleShow,
-  postId,
+  postData,
 }) {
   const auth = useAuthUser();
   const dispatch = useDispatch();
   const [update, setUpdate] = useState(false);
-  const userPosts = useSelector(
-    (state) =>
-      state.userData.data.data.User_posts.filter((ele) => {
-        return ele.postId === postId;
-      })[0]
-  );
+
   const [postContent, setPostContent] = useState({
-    content: userPosts.content,
+    content: postData.content,
   });
-  const profileConfigs = {
-    method: "get",
-    url: "http://127.0.0.1:8000/api/profile",
-    headers: {
-      Accept: "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-      Authorization: `Bearer ${auth().token}`,
-    },
-  };
+
   const config = {
     method: "put",
-    url: `http://127.0.0.1:8000/api/post/${userPosts.postId}`,
+    url: `http://127.0.0.1:8000/api/post/${postData.postId}`,
     headers: {
       Accept: "application/vnd.api+json",
       "Content-Type": "application/x-www-form-urlencoded",
@@ -58,9 +44,7 @@ export default function EditPost({
       content: postContent.content,
     }),
   };
-  useEffect(() => {
-    dispatch(fetchUserData(profileConfigs));
-  }, [update]);
+
   const handleEdit = () => {
     if (postContent.content == "") return null;
     axios(config)
@@ -134,7 +118,7 @@ export default function EditPost({
                 onClick={() => {
                   setPostContent((pervs) => ({
                     ...pervs,
-                    content: userPosts.content,
+                    content: postData.content,
                   }));
                   toggleShow();
                 }}

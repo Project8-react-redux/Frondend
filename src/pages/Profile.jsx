@@ -43,9 +43,14 @@ function Profile() {
   }, []);
   if (userData.length == 0) {
     return (
-      <MDBSpinner className="me-2" style={{ width: "3rem", height: "3rem" }}>
-        <span className="visually-hidden">Loading...</span>
-      </MDBSpinner>
+      <div
+        style={{ height: "65vh" }}
+        className="d-flex justify-content-center align-items-center"
+      >
+        <MDBSpinner className="me-2 " style={{ width: "3rem", height: "3rem" }}>
+          <span className="visually-hidden">Loading...</span>
+        </MDBSpinner>
+      </div>
     );
   }
   return (

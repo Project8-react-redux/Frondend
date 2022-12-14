@@ -14,7 +14,6 @@ export const Posts = ({ postData }) => {
   const [optSmModal, setOptSmModal] = useState(false);
   const [optSmModal2, setOptSmModal2] = useState(false);
   const toggleShow = () => setOptSmModal(!optSmModal);
-
   const toggleShow2 = () => setOptSmModal2(!optSmModal2);
 
   return (
@@ -66,13 +65,14 @@ export const Posts = ({ postData }) => {
                 <div className="d-flex justify-content-between align-items-center">
                   <p></p>
                   <Link className="link-muted" onClick={toggleShow}>
-                    <MDBIcon fas icon="reply me-1" /> Comment
+                    <MDBIcon fas icon="reply me-1" />
+                    View Comments
                   </Link>
                   <ProfilePostModel
                     toggleShow={toggleShow}
                     setOptSmModal={setOptSmModal}
                     optSmModal={optSmModal}
-                    postId={postData.postId}
+                    postData={postData}
                   />
                 </div>
               </div>
