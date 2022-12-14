@@ -46,7 +46,7 @@ const Popular = () => {
     console.log(auth());
     const config = {
       method: "post",
-      url: "http://localhost:8000/api/addExpectation",
+      url: "http://localhost:8000/api/addUserExpectation",
       headers: {
         Accept: "application/vnd.api+json",
         "Content-Type": "application/x-www-form-urlencoded",
