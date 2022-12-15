@@ -68,7 +68,7 @@ export const ContactForm = () => {
                 <h2>Contact Info</h2>
                 <p>
                 We’d love to hear from you
-Whether you’re curious about Matches <br></br>or even press—we’re ready to answer any and all questions.
+Whether you’re curious about Matches <br></br>or even press—we’re ready to answer any questions.
                 </p>
                 <div className="ci-address">
                   <h5>Amman , Jordan</h5>

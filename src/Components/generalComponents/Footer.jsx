@@ -60,25 +60,19 @@ Blog                </Link>
           </MDBCol>
 
           <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-            <h5 className="text-uppercase mb-0">Social Media</h5>
+            <h5 className="text-uppercase mb-0 ">Contact Info</h5>
 
-            <ul className="list-unstyled">
+            <ul className="list-unstyled mt-2">
               <li>
-              <a href={'/https://www.facebook.com/HAYYA-107115075582816'} style={{fontSize:"17px"}}> 
-                                    < GrFacebookOption/> </a>
+              Amman , Jordan
               </li>
               <li>
-              <a href={'https://www.linkedin.com/company/hayya/?viewAsMember=true'}style={{fontSize:"17px"}}>
-                                    < AiFillLinkedin /></a>
+              <a  href="tel:+962778084901" style={{color:"white"}}>+962778084901</a>
               </li>
               <li>
-              <a href={'https://twitter.com/jardat_rama'}style={{fontSize:"17px"}}>
-                                    <AiFillTwitterCircle /> </a>
+              <a  href="mailto:hayya@gmail.com" style={{color:"white"}}>hayya@gmail.com </a>
               </li>
-              <li>
-              <a href={'https://www.youtube.com/@hayya3947'}style={{fontSize:"17px"}}>
-       <AiOutlineYoutube /></a>
-              </li>
+             
             </ul>
           </MDBCol>
         </MDBRow>
@@ -89,7 +83,7 @@ Blog                </Link>
         className="text-center p-3"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
-        © 2020 Copyright:Hayya    
+        © 2022 Copyright:Hayya    
        
       </div>
     </MDBFooter>

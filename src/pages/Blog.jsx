@@ -20,7 +20,7 @@ function Blog(props) {
           <div className="row">
             <div className="col-lg-12">
               <div className="bs-text">
-                <h2>Blog</h2>
+                <h2>News</h2>
               </div>
             </div>
           </div>

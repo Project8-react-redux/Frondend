@@ -14,6 +14,21 @@ function About() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
   }, []);
   return (
+    <>
+    <section
+    className="breadcrumb-section set-bg"
+    data-setbg="img/breadcrumb-bg.jpg"
+  >
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-12">
+          <div className="bs-text">
+            <h2>About Us</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     <div className="img">
       <div className="container">
         <div class="we-are-block">
@@ -52,7 +67,7 @@ function About() {
                 width="951"
                 height="471"
                 alt="Building Pic"
-              />
+                />
             </div>
 
             <div class="history-info">
@@ -78,6 +93,7 @@ function About() {
         </div>
       </div>
     </div>
+                </>
   );
 }
 

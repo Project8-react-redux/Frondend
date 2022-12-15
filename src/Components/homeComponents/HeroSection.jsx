@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-
+import { useAuthUser } from "react-auth-kit";
+import { useIsAuthenticated } from "react-auth-kit";
 
 const HeroSection = () => {
-
+    const isAuthenticated = useIsAuthenticated();
+    const auth = useAuthUser();
 
     return (
 
@@ -22,10 +24,16 @@ const HeroSection = () => {
                                                 <h2>Morocco VS . France </h2>
                                                 <p> 
                                                 Start with us on the predictions journey and follow the latest match news with others                                                </p>
-                                                <Link className="primary-btn" style={{ backgroundColor: "#751f4a" }}
- to={'register'}>
+         
+                                                {!isAuthenticated() ? (
+                                                <Link className="primary-btn" style={{ backgrounColor: "#751f4a" }} to={'register'}>
                                                     Start Now
                                                 </Link>
+                                                  ) : (
+                                                    <Link className="primary-btn" style={{ backgrounColor: "#751f4a" }} to={'Community'}>
+                                                    Start Now
+                                                </Link>
+                                                   )}
                                             </div>
                                         </div>
                                     </div>

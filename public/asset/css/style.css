@@ -1666,7 +1666,7 @@ ol {
 
 .blog-items .single-item .bi-pic img {
 	border-radius: 2px;
-	min-width: 100%;
+	/* min-width: 100%; */
 }
 
 .blog-items .single-item .bi-text {
