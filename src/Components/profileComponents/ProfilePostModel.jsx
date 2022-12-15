@@ -7,12 +7,13 @@ import {
   MDBModalBody,
 } from "mdb-react-ui-kit";
 import SinglePost from "../../pages/Posts";
+import ProfilePost from "./ProfilePost";
 
 export default function ProfilePostModel({
   toggleShow,
   setOptSmModal,
   optSmModal,
-  postId,
+  postData,
 }) {
   return (
     <>
@@ -28,7 +29,7 @@ export default function ProfilePostModel({
               ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              <SinglePost postId={postId} toggleShow={toggleShow} />
+              <ProfilePost postData={postData} toggleShow={toggleShow} />
             </MDBModalBody>
           </MDBModalContent>
         </MDBModalDialog>

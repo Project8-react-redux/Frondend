@@ -20,15 +20,15 @@ const RecentMatches = ({ previouMatches }) => {
                           key={match.match_id}
                           style={{ backgroundColor: "#751f4a78" }}
                         >
-                          <td className="left-team">
+                          <td className="left-team ">
                             <img src={match.team_home_badge} alt="" />
                             <h6>{match.match_hometeam_name}</h6>
                           </td>
                           <td className="mt-content">
-                            <div className="mc-op">
+                            {/* <div className="mc-op">
                               {match.match_hometeam_name} Vs{" "}
                               {match.match_awayteam_name}
-                            </div>
+                            </div> */}
                             <h4>
                               {match.match_hometeam_score} :{" "}
                               {match.match_awayteam_score}

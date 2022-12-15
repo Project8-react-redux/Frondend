@@ -13,14 +13,14 @@ import {
   MDBTextArea,
 } from "mdb-react-ui-kit";
 import { useAuthUser } from "react-auth-kit";
-import { useJquery } from "../hooks/useJquery";
+import { useJquery } from "../../hooks/useJquery";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { getPosts } from "../Reducers/PostReduser";
-import EditComment from "../Components/profileComponents/EditComment";
-import EditPostCommunity from "../Components/profileComponents/EditPostCommunity";
+import EditPostCommunity from "./EditPostCommunity";
+import EditComment from "./EditComment";
+import { fetchUserData } from "../../Reducers/ProfileReducer";
 
-export default function PostINAll({ postData }) {
+export default function ProfilePost({ postData }) {
   const { reloadJquery } = useJquery();
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(2);
@@ -36,7 +36,15 @@ export default function PostINAll({ postData }) {
   });
   const dispatch = useDispatch();
   const auth = useAuthUser();
-
+  const profileConfig = {
+    method: "get",
+    url: "http://127.0.0.1:8000/api/profile",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization: `Bearer ${auth().token}`,
+    },
+  };
   const commentConfig = {
     method: "post",
     url: "http://127.0.0.1:8000/api/comment",
@@ -52,7 +60,7 @@ export default function PostINAll({ postData }) {
     axios(commentConfig)
       .then(function (res) {
         console.log(res.data);
-        dispatch(getPosts());
+        dispatch(fetchUserData(profileConfig));
         setLoading(!loading);
         setComment((pervs) => ({
           ...pervs,
@@ -75,10 +83,11 @@ export default function PostINAll({ postData }) {
     };
     axios(config).then((resp) => {
       console.log(resp);
-      dispatch(getPosts());
+      dispatch(fetchUserData(profileConfig));
       setLoading(!loading);
     });
   };
+
   return (
     <section>
       <MDBRow className="justify-content-center py-3 ">
@@ -103,50 +112,6 @@ export default function PostINAll({ postData }) {
                       {postData.created_at.split("T")[1].slice(0, 5)}
                     </p>
                   </div>
-                </div>
-                <div
-                  className="align-self-start  rounded"
-                  style={{ backgroundColor: "#e9e9e9" }}
-                >
-                  {postData.postOwnerId == auth().user.user_id ? (
-                    <div>
-                      <MDBPopover
-                        size="sm"
-                        color="danger"
-                        btnChildren={<MDBIcon fas icon="trash-alt" />}
-                        dismiss
-                      >
-                        <MDBPopoverBody>
-                          <h6>Are you sure?</h6>
-                          <p>You won't be able to revert this!</p>
-                          <MDBBtn
-                            color="danger"
-                            onClick={() => {
-                              handleDelete(postData.postId, "post");
-                            }}
-                          >
-                            delete
-                          </MDBBtn>
-                        </MDBPopoverBody>
-                      </MDBPopover>
-
-                      <MDBIcon
-                        fas
-                        icon="edit"
-                        className=" mx-2 "
-                        style={{ fontSize: 18, cursor: "pointer" }}
-                        onClick={toggleShow}
-                      />
-                      <EditPostCommunity
-                        setBasicModal={setOptSmModal}
-                        basicModal={optSmModal}
-                        toggleShow={toggleShow}
-                        postData={postData}
-                      />
-                    </div>
-                  ) : (
-                    <div></div>
-                  )}
                 </div>
               </div>
               <p className="mt-3 mb-4 pb-2  px-4">{postData.content}</p>

@@ -27,7 +27,7 @@ export default function NavBar() {
   const isAuthenticated = useIsAuthenticated();
   const navigate = useNavigate();
   const auth = useAuthUser();
-
+  const isAuth = useIsAuthenticated();
   return (
     <MDBNavbar expand="lg" light sticky style={{ backgroundColor: "#751f4a" }}>
       <MDBContainer fluid>
@@ -52,18 +52,23 @@ export default function NavBar() {
                 </NavLink>
               </MDBNavbarLink>
             </MDBNavbarItem>
+            {isAuth() ? (
+              <MDBNavbarItem>
+                <MDBNavbarLink>
+                  <NavLink to={"/Community"} className="text-white">
+                    Community
+                  </NavLink>
+                </MDBNavbarLink>
+              </MDBNavbarItem>
+            ) : (
+              ""
+            )}
             <MDBNavbarItem>
               <MDBNavbarLink>
                 <NavLink to="/blog" className="text-white">
                   News
                 </NavLink>
               </MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              {/* <MDBNavbarLink>
-                <NavLink to="/Community" className="text-white">
-                    Community</NavLink>
-              </MDBNavbarLink> */}
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink>
@@ -95,8 +100,8 @@ export default function NavBar() {
             ) : (
               <MDBNavbarItem className="px-3">
                 <MDBDropdown>
-                  <MDBDropdownToggle tag="a" className="nav-link" role="button">
-                    <img src={auth().user.profileImage} alt="" width="40px" />
+                  <MDBDropdownToggle tag="a" className="nav-link" style={{ backgroundColor: "#751f4a" }} role="button">
+                    <img className="rounded-5" src={auth().user.profileImage} alt="" width="40px" />
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
                     <MDBDropdownItem className="py-2 px-3 ">
