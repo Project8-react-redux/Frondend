@@ -201,6 +201,8 @@ a:hover {
     padding: 15px 0px 15px 0px;
     font-size: 14pt;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 7px;
+
 }
 
 .about-us-info a:hover {
@@ -346,6 +348,8 @@ a:hover {
     padding: 15px 0px 15px 0px;
     font-size: 14pt;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 7px;
+
 }
 
 .history-info a:hover {
