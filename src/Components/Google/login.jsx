@@ -1,16 +1,17 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState } from "react";
 import { gapi } from "gapi-script";
-import { useNavigate } from 'react-router';
-import { GoogleLogin } from 'react-google-login';
+import { useNavigate } from "react-router";
+import { GoogleLogin } from "react-google-login";
 // refresh token
 // import { refreshTokenSetup } from '../utils/refreshToken';
-import { refreshTokenSetup } from './refreshToken'
-import axios from 'axios';
-import { useSignIn } from 'react-auth-kit';
+import { refreshTokenSetup } from "./refreshToken";
+import axios from "axios";
+import { useSignIn } from "react-auth-kit";
 
-const qs = require('qs');
+const qs = require("qs");
 
-const clientId = '1028723542336-jnaghlrmbulqn8l6ksmcd8kbmtscfbed.apps.googleusercontent.com';
+const clientId =
+  "653384430282-jvi1sj56j6954ojmhvhlpa0lhn2sn9hq.apps.googleusercontent.com";
 
 function LoginGoogle() {
   const navigate = useNavigate();
@@ -29,14 +30,20 @@ function LoginGoogle() {
   // check if the email exists first and logiin if ture  retiger if false ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   const onSuccess = (res) => {
-
+    const data = {
+      first_name: res.profileObj.givenName,
+      last_name: res.profileObj.familyName,
+      profile_image: res.profileObj.imageUrl,
+      email: res.profileObj.email,
+      google_id: res.profileObj.googleId,
+    };
     const config = {
-      method: 'post',
-      url: 'http://localhost:8000/api/google-register',
+      method: "post",
+      url: "http://localhost:8000/api/google-register",
       headers: {
-        'Accept': 'application/vnd.api+json',
+        Accept: "application/vnd.api+json",
       },
-      data: res.profileObj
+      data: data,
     };
     console.log(res.profileObj);
 
@@ -56,28 +63,22 @@ function LoginGoogle() {
       ) {
         return navigate("/");
       }
-     
-    })
+    });
   };
 
-  const onFailure = (res) => {
-    // console.log('Login failed: res:', res);
-    // alert(
-    //   `Failed to login. 😢 please try again `
-    // );
-  };
+  const onFailure = (res) => {};
 
   return (
-    <div className='d-flex flex-wrap mt-3 p-'>
-
-      <GoogleLogin className='d-flex justify-content-center text-dark rounded-4 w-100'
+    <div className="d-flex flex-wrap mt-3 p-">
+      <GoogleLogin
+        className="d-flex justify-content-center text-dark rounded-4 w-100"
         //   bg-dark text-light style if we want it to be dark
         clientId={clientId}
         buttonText="Login with google"
         onSuccess={onSuccess}
         onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
-       />
+        cookiePolicy={"single_host_origin"}
+      />
     </div>
   );
 }

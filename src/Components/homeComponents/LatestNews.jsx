@@ -19,7 +19,7 @@ const LastesNews = () => {
       <section className="latest-section">
         <div className="container p-5">
           <div className="row">
-            <div className="col-lg-8" style={{ zIndex: -1 }}>
+            <div className="col-lg-8" style={{ zIndex: 0 }}>
               <div className="section-title latest-title">
                 <h3>
                   Latest <span>News</span>
@@ -32,30 +32,27 @@ const LastesNews = () => {
                 <div className="col-md-6">
                   <div className="news-item left-news">
                     <div>
-                      <img src={articles[0]?.media} />
+                      <img src={articles[1]?.media} />
                     </div>
                     <div className="ni-text">
                       <h4>
-                        <Link to={`/NewsDetailes/${articles.article_id}`}>
-                          {articles[0]?.title}
+                        <Link to={`/NewsDetailes/${articles[1]?.article_id}`}>
+                          {articles[1]?.title}
                         </Link>
                       </h4>
                       <ul>
                         <li>
                           <i className="fa fa-calendar" />{" "}
-                          {articles[0]?.published_date}
-                        </li>
-                        <li>
-                          <i className="fa fa-edit" /> 3 Comment
+                          {articles[1]?.published_date}
                         </li>
                       </ul>
 
-                      <p>{articles[0]?.excerpt}</p>
+                      <p>{articles[1]?.excerpt}</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6">
-                  {articles.slice(1, 4)?.map((element) => {
+                  {articles.slice(2, 5)?.map((element) => {
                     return (
                       <div className="news-item">
                         <div className="ni-pic">
@@ -71,9 +68,6 @@ const LastesNews = () => {
                             <li>
                               <i className="fa fa-calendar" />
                               {element.published_date}
-                            </li>
-                            <li>
-                              <i className="fa fa-edit" /> 3 Comment
                             </li>
                           </ul>
                         </div>

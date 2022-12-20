@@ -99,8 +99,8 @@ export default function PostINAll({ postData }) {
                       {postData.postOwner}
                     </h6>
                     <p className="text-muted small mb-0">
-                      {postData.created_at.split("T")[0]} at{" "}
-                      {postData.created_at.split("T")[1].slice(0, 5)}
+                      {postData.created_at?.split("T")[0]} at{" "}
+                      {postData.created_at?.split("T")[1].slice(0, 5)}
                     </p>
                   </div>
                 </div>
@@ -186,8 +186,8 @@ export default function PostINAll({ postData }) {
                                   <p className="mb-0 small text-muted">
                                     {comment.updated_at.split("T")[0]} at{" "}
                                     {comment.updated_at
-                                      .split("T")[1]
-                                      .slice(0, 5)}
+                                      ?.split("T")[1]
+                                      ?.slice(0, 5)}
                                   </p>
                                 </span>
                               </div>

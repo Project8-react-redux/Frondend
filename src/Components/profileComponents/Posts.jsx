@@ -1,12 +1,20 @@
+import axios from "axios";
 import {
+  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCol,
   MDBIcon,
+  MDBPopover,
+  MDBPopoverBody,
   MDBTypography,
 } from "mdb-react-ui-kit";
 import React, { useState } from "react";
+import { useAuthUser } from "react-auth-kit";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { getPosts } from "../../Reducers/PostReduser";
+import { fetchUserData } from "../../Reducers/ProfileReducer";
 import EditPost from "./EditPost";
 import ProfilePostModel from "./ProfilePostModel";
 
@@ -15,7 +23,33 @@ export const Posts = ({ postData }) => {
   const [optSmModal2, setOptSmModal2] = useState(false);
   const toggleShow = () => setOptSmModal(!optSmModal);
   const toggleShow2 = () => setOptSmModal2(!optSmModal2);
+  const auth = useAuthUser();
+  const dispatch = useDispatch();
 
+  const handleDelete = (id, action) => {
+    const config = {
+      method: "delete",
+      url: `http://127.0.0.1:8000/api/${action}/${id}`,
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        Authorization: `Bearer ${auth().token}`,
+      },
+    };
+    const profileConfig = {
+      method: "get",
+      url: "http://127.0.0.1:8000/api/profile",
+      headers: {
+        Accept: "application/vnd.api+json",
+        "Content-Type": "application/vnd.api+json",
+        Authorization: `Bearer ${auth().token}`,
+      },
+    };
+    axios(config).then((resp) => {
+      console.log(resp);
+      dispatch(fetchUserData(profileConfig));
+    });
+  };
   return (
     <>
       <MDBCol md="10" lg="12" xl="12">
@@ -42,6 +76,7 @@ export const Posts = ({ postData }) => {
                   <div>
                     <MDBIcon
                       fas
+                      className="me-3"
                       icon="edit"
                       onClick={toggleShow2}
                       style={{ fontSize: 20, cursor: "pointer" }}
@@ -52,12 +87,25 @@ export const Posts = ({ postData }) => {
                       basicModal={optSmModal2}
                       postId={postData.postId}
                     />
-                    <MDBIcon
-                      fas
-                      icon="trash-alt"
-                      className="ms-3 text-danger"
-                      style={{ fontSize: 20, cursor: "pointer" }}
-                    />
+                    <MDBPopover
+                      size="sm"
+                      color="danger"
+                      btnChildren={<MDBIcon fas icon="trash-alt" />}
+                      dismiss
+                    >
+                      <MDBPopoverBody>
+                        <h6>Are you sure?</h6>
+                        <p>You won't be able to revert this!</p>
+                        <MDBBtn
+                          color="danger"
+                          onClick={() => {
+                            handleDelete(postData.postId, "post");
+                          }}
+                        >
+                          delete
+                        </MDBBtn>
+                      </MDBPopoverBody>
+                    </MDBPopover>
                   </div>
                 </div>
                 <p>{postData.content}</p>

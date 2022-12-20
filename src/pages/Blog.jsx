@@ -53,14 +53,18 @@ function Blog(props) {
   return (
     <>
       <section
+        // style={{ filter: "brightness(0.5)" }}
         className="breadcrumb-section set-bg"
         data-setbg="
-https://images-ext-1.discordapp.net/external/Dry7MK13j0QNWGtXu-mCYf7gx4pQx3VUalbXmDaRDBc/https/miro.medium.com/max/1400/1%2Ad50ssdJTeL6oUalIS8JAYw.jpeg?width=1005&height=670"
+        https://st2.depositphotos.com/1754991/8188/i/950/depositphotos_81881196-stock-photo-panorama-of-professional-football-stadium.jpg"
       >
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="bs-text">
+              <div
+                className="bs-text py-3 "
+                style={{ backgroundColor: "#00000091" }}
+              >
                 <h2>News</h2>
               </div>
             </div>
@@ -125,14 +129,14 @@ https://images-ext-1.discordapp.net/external/Dry7MK13j0QNWGtXu-mCYf7gx4pQx3VUalb
                   );
                 })}
               </div>
-              <div className="more-blog">
+              {/* <div className="more-blog">
                 <a href="#">
                   <i className="fa fa-long-arrow-left" /> Older post
                 </a>
                 <a href="#">
                   Newer post <i className="fa fa-long-arrow-right" />
                 </a>
-              </div>
+              </div> */}
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="blog-sidebar">

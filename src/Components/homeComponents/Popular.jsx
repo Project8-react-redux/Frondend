@@ -11,6 +11,7 @@ import { logDOM } from "@testing-library/react";
 import { useAuthUser } from "react-auth-kit";
 import { ImArrowUpRight2 } from "react-icons/im";
 import Expextation from "../populareComponents/Expextation";
+import Swal from "sweetalert2";
 const Popular = () => {
   const auth = useAuthUser();
   const { reloadJquery } = useJquery();
@@ -41,9 +42,8 @@ const Popular = () => {
       [e.target.name]: e.target.value,
     }));
   }
-  console.log(expectationData);
+
   function handelOnSubmit(id) {
-    console.log(auth());
     const config = {
       method: "post",
       url: "http://localhost:8000/api/addUserExpectation",
@@ -57,9 +57,43 @@ const Popular = () => {
         user_id: auth().user.user_id,
       },
     };
-    axios(config).then((response) => {
-      console.log(response);
-    });
+    axios(config)
+      .then((res) => {
+        console.log(res);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-right",
+          iconColor: "white",
+          customClass: {
+            popup: "colored-toast",
+          },
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+        Toast.fire({
+          icon: "success",
+          title: res.data.message,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-right",
+          iconColor: "white",
+          customClass: {
+            popup: "colored-toast",
+          },
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+        Toast.fire({
+          icon: "error",
+          title: error.response.data.message,
+        });
+      });
   }
   return (
     <>
@@ -74,7 +108,7 @@ const Popular = () => {
                 </h3>
               </div>
               <div className="row d-flex mb-4 ">
-                {expectations?.map((expectation) => {
+                {expectations?.slice(1)?.map((expectation) => {
                   return (
                     <Expextation
                       handeLOnChange={handeLOnChange}
