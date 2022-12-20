@@ -53,6 +53,7 @@ function Profile() {
       </div>
     );
   }
+
   return (
     <div className="gradient-custom-2" style={{ backgroundColor: "#e9e9e9" }}>
       <MDBContainer className="py-5 h-100">
@@ -117,12 +118,14 @@ function Profile() {
                 </div>
                 <MDBRow className="justify-content-center">
                   {userData.data.User_posts.map((ele) => {
-                    return <Posts postData={ele} />;
+                    if (ele.status == "approved") {
+                      return <Posts postData={ele} />;
+                    }
                   })}
                 </MDBRow>
-                <hr />
+                {/* <hr /> */}
                 {/* -----------------------------saved news-------------------------------------- */}
-                <div className="">
+                {/* <div className="">
                   <p className="lead fw-normal mb-1">Saved News</p>
                   <div className="mt-3 row">
                     {userData.data.saved_Articles.map((ele) => {
@@ -148,7 +151,7 @@ function Profile() {
                       );
                     })}
                   </div>
-                </div>
+                </div> */}
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

@@ -15,6 +15,7 @@ import { useAuthUser } from "react-auth-kit";
 import { useDispatch, r } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { getPosts } from "../../Reducers/PostReduser";
 
 const qs = require("qs");
 
@@ -65,6 +66,7 @@ export default function EditPostCommunity({
           icon: "success",
           title: res.data.message,
         });
+        dispatch(getPosts());
         setUpdate(!update);
         toggleShow();
       })

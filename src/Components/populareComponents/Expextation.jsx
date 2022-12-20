@@ -43,6 +43,7 @@ export default function Expextation({
                     type="number"
                     name="team_1"
                     min={0}
+                    // value={expectation.team_1}
                     style={{ width: "80px", backgroundColor: "white" }}
                     onChange={handeLOnChange}
                   />
@@ -66,6 +67,7 @@ export default function Expextation({
                     type="number"
                     name="team_2"
                     min={0}
+                    // value={expectation.team_2}
                     style={{ width: "80px", backgroundColor: "white" }}
                     onChange={handeLOnChange}
                   />
